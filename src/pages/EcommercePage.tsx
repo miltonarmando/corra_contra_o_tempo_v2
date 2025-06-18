@@ -215,7 +215,7 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
                     size="lg" 
                     variant="outline"
                     className="mobile-button border-2 border-white text-white hover:bg-white hover:text-orange-600 font-bold hover:scale-105 transition-all duration-300"
-                    onClick={() => document.getElementById('detalhes')?.scrollIntoView({ behavior: 'smooth' })}
+                    onClick={() => document.getElementById('como-funciona')?.scrollIntoView({ behavior: 'smooth' })}
                   >
                     <ArrowDown className="w-5 h-5 mr-3" />
                     SAIBA MAIS
