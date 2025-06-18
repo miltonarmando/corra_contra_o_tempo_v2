@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/log.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#8B5CF6" />
+    <title>Corra Contra o Tempo - Jogo de Tabuleiro</title>
+    <meta name="description" content="Jogo de tabuleiro educativo para todas as idades. Diversão garantida para família e amigos!" />
+    <style>
+      /* Prevent scroll restoration and ensure top position */
+      html, body {
+        scroll-behavior: auto !important;
+        overflow-anchor: none;
+      }
+      /* Hide content until JS loads to prevent scroll jumps */
+      #root:empty {
+        display: none;
+      }
+    </style>
+    <script type="module" crossorigin src="/corra_contra_o_tempo_v2/assets/index-BN2R_qqP.js"></script>
+    <link rel="stylesheet" crossorigin href="/corra_contra_o_tempo_v2/assets/index-Be3C10Ni.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      // Force scroll to top before React loads
+      if (window.scrollY !== 0) {
+        window.scrollTo(0, 0);
+      }
+      // Disable scroll restoration
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+    </script>
+  </body>
+</html>

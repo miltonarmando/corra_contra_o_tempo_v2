@@ -1,0 +1,16 @@
+{
+  "css.validate": false,
+  "scss.validate": false,
+  "less.validate": false,
+  "tailwindCSS.includeLanguages": {
+    "typescript": "typescript",
+    "typescriptreact": "typescriptreact"
+  },
+  "tailwindCSS.experimental.classRegex": [
+    ["cn\\(([^)]*)\\)", "[\"'`]([^\"'`]*)[\"'`]"]
+  ],
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  "typescript.preferences.includePackageJsonAutoImports": "auto"
+}
