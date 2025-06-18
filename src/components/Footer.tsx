@@ -10,6 +10,7 @@ import {
   Copyright
 } from '@phosphor-icons/react';
 import { Button } from './ui/Button';
+import { getLogoPath } from '../utils/assetPaths';
 
 const Footer: React.FC = () => {
   // Variações de animação para entrada lateral profissional
@@ -101,9 +102,8 @@ const Footer: React.FC = () => {
           <motion.div
             {...slideFromLeft}
           >
-            <div className="flex items-center space-x-3 mb-6">
-              <img 
-                src="/assets/img/logo.png" 
+            <div className="flex items-center space-x-3 mb-6">              <img 
+                src={getLogoPath()} 
                 alt="Corra Contra o Tempo" 
                 className="h-8 w-auto"
               />

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { List, X,} from '@phosphor-icons/react';
 import { Button } from './ui/Button';
+import { getLogoPath } from '../utils/assetPaths';
 
 
 interface HeaderProps {
@@ -117,9 +118,8 @@ const navigationItems = [
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
             className="flex items-center space-x-2 sm:space-x-3 logo-mobile-safe"
-          >
-            <img 
-              src="/assets/img/logo.png" 
+          >            <img 
+              src={getLogoPath()} 
               alt="Corra Contra o Tempo" 
               className="h-7 sm:h-8 md:h-10 w-auto drop-shadow-lg"
             />

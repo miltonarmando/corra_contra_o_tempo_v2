@@ -4,6 +4,7 @@ import { Play, Clock, Users, Trophy, CaretRight, Star } from '@phosphor-icons/re
 import { Button } from '../components/ui/Button';
 import { Card } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
+import { getBoxPath, getBoardPath, getLogoPath } from '../utils/assetPaths';
 
 interface HomePageProps {
   onNavigateToGame?: () => void;
@@ -27,13 +28,12 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigateToGame }) => {
       title: 'Divertido',
       description: 'Prove suas habilidades e seja o mais rápido adivinhar'
     }
-  ];
-  const gameVersions = [
+  ];  const gameVersions = [
     {
       id: 'kids',
       title: 'Versão Kids',
       description: 'Mesmas regras, mas com palavras mais simples',
-      image: '/assets/img/kids box.png',
+      image: getBoxPath.kids(),
       playerCount: '2-6 jogadores',
       ageRange: 'Palavras fáceis',
       difficulty: 'Simples'
@@ -42,7 +42,7 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigateToGame }) => {
       id: 'adult',
       title: 'Versão Adulto',
       description: 'Mesmas regras, mas com palavras mais desafiadoras',
-      image: '/assets/img/adulto box.png',
+      image: getBoxPath.adult(),
       playerCount: '2-6 jogadores',
       ageRange: 'Palavras difíceis',
       difficulty: 'Desafiador'
@@ -62,9 +62,8 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigateToGame }) => {
             transition={{ duration: 0.6 }}
             className="text-center max-w-4xl mx-auto"
           >
-            <div className="flex items-center justify-center mb-6">
-              <img 
-                src="/assets/img/logo.png" 
+            <div className="flex items-center justify-center mb-6">              <img 
+                src={getLogoPath()} 
                 alt="Corra Contra o Tempo Logo" 
                 className="h-16 w-auto"
               />
@@ -256,9 +255,8 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigateToGame }) => {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <Card className="p-6 text-center">
-                <img 
-                  src="/assets/img/Tabuleiro kids.png" 
+              <Card className="p-6 text-center">                <img 
+                  src={getBoardPath.kids()} 
                   alt="Tabuleiro Kids"
                   className="w-full h-48 object-contain rounded-lg mb-4"
                 />
@@ -277,9 +275,8 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigateToGame }) => {
               transition={{ delay: 0.1, duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <Card className="p-6 text-center">
-                <img 
-                  src="/assets/img/tabuleiro adulto.png" 
+              <Card className="p-6 text-center">                <img 
+                  src={getBoardPath.adult()} 
                   alt="Tabuleiro Adulto"
                   className="w-full h-48 object-contain rounded-lg mb-4"
                 />
@@ -298,9 +295,8 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigateToGame }) => {
               transition={{ delay: 0.2, duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <Card className="p-6 text-center">
-                <img 
-                  src="/assets/img/tabuleiro simple.png" 
+              <Card className="p-6 text-center">                <img 
+                  src={getBoardPath.simple()} 
                   alt="Tabuleiro Simples"
                   className="w-full h-48 object-contain rounded-lg mb-4"
                 />

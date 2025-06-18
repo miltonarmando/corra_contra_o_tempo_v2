@@ -18,6 +18,7 @@ import { Badge } from '../components/ui/Badge';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import FAQ from '../components/FAQ';
+import { getBoxPath, getBoardPath, getCardPath, getManualPath } from '../utils/assetPaths';
 import ScrollProgressIndicator from '../components/ScrollProgressIndicator';
 import BackToTop from '../components/BackToTop';
 import FloatingParticles from '../components/FloatingParticles';
@@ -274,9 +275,8 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
                   className="relative group"
                   whileHover={{ y: -10 }}
                   transition={{ duration: 0.6, ease: "easeOut" }}
-                >
-                  <img 
-                    src="/assets/img/kids box.png" 
+                >                  <img 
+                    src={getBoxPath.kids()} 
                     alt="Versão Kids"
                     className="mobile-image-hero transform group-hover:scale-110 transition-transform duration-500 filter drop-shadow-2xl"
                   />
@@ -302,9 +302,8 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
                   <motion.div 
                   className="relative group"
                   whileHover={{ y: -10 }}                  transition={{ duration: 0.6, ease: "easeOut" }}
-                >
-                  <img 
-                    src="/assets/img/adulto box.png" 
+                >                  <img 
+                    src={getBoxPath.adult()} 
                     alt="Versão Adulto"
                     className="mobile-image-hero transform group-hover:scale-110 transition-transform duration-500 filter drop-shadow-2xl"
                     style={{ width: 'auto', height: 'auto', maxWidth: '100%' }}
@@ -798,10 +797,9 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
                         ADULTO
                     </div>
                     
-                    {/* Imagem padronizada */}
-                    <div className="flex justify-center items-center h-64 sm:h-72 lg:h-80 mobile-margin-sm">
+                    {/* Imagem padronizada */}                    <div className="flex justify-center items-center h-64 sm:h-72 lg:h-80 mobile-margin-sm">
                       <motion.img 
-                        src="/assets/img/tabuleiro adulto.png" 
+                        src={getBoardPath.adult()} 
                         alt="Corra Contra o Tempo - Adulto"
                         className="w-auto h-full max-w-full object-contain"
                         whileHover={{ 
@@ -881,9 +879,8 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
                     </div>
                     
                     {/* Imagem padronizada */}
-                    <div className="flex justify-center items-center h-64 sm:h-72 lg:h-80 mobile-margin-sm">
-                      <motion.img 
-                        src="/assets/img/Tabuleiro kids.png" 
+                    <div className="flex justify-center items-center h-64 sm:h-72 lg:h-80 mobile-margin-sm">                      <motion.img 
+                        src={getBoardPath.kids()} 
                         alt="Corra Contra o Tempo - Kids"
                         className="w-auto h-full max-w-full object-contain"
                         whileHover={{ 
@@ -1180,10 +1177,9 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
                   >
                     <Button 
                       size="lg"
-                      className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold py-4 px-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 min-h-[64px] group"
-                      onClick={() => {
+                      className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold py-4 px-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 min-h-[64px] group"                      onClick={() => {
                         const link = document.createElement('a');
-                        link.href = '/assets/Manual - Corra Contra o Tempo.pdf';
+                        link.href = getManualPath();
                         link.download = 'Manual-Corra-Contra-o-Tempo.pdf';
                         link.click();
                       }}
@@ -1219,9 +1215,19 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
                   <div className="relative flex-1 mb-6">
                     {/* Glow effect */}
                     <div className="absolute -inset-4 bg-gradient-to-r from-orange-400/30 to-red-500/30 rounded-3xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500" />
-                    
-                    <motion.img 
-                      src="/assets/img/tabuleiro simple.png" 
+                      <motion.img 
+                      src={getBoardPath.simple()} 
+                      alt="Tabuleiro do Jogo"
+                      className="w-fit h-fit object-center rounded-2xl shadow-xl relative z-10"
+                      whileHover={{ 
+                        rotateY: 8,
+                        rotateX: 8,
+                        scale: 1.05
+                      }}
+                      transition={{ duration: 0.6 }}
+                    />
+                    <br />                    <motion.img 
+                      src={getCardPath.front()} 
                       alt="Tabuleiro do Jogo"
                       className="w-fit h-fit object-center rounded-2xl shadow-xl relative z-10"
                       whileHover={{ 
@@ -1233,19 +1239,7 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
                     />
                     <br />
                     <motion.img 
-                      src="/assets/img/card-front.jpg" 
-                      alt="Tabuleiro do Jogo"
-                      className="w-fit h-fit object-center rounded-2xl shadow-xl relative z-10"
-                      whileHover={{ 
-                        rotateY: 8,
-                        rotateX: 8,
-                        scale: 1.05
-                      }}
-                      transition={{ duration: 0.6 }}
-                    />
-                    <br />
-                    <motion.img 
-                      src="/assets/img/card-rear.jpg" 
+                      src={getCardPath.rear()} 
                       alt="Tabuleiro do Jogo"
                       className="w-fit h-fit object-center rounded-2xl shadow-xl relative z-10"
                       whileHover={{ 

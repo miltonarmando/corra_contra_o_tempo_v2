@@ -16,6 +16,7 @@ import { Button } from '../components/ui/Button';
 import { Card } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
 import { Progress } from '../components/ui/Progress';
+import { getAvatarPath, getBoardPath } from '../utils/assetPaths';
 
 interface Player {
   id: number;
@@ -68,7 +69,7 @@ const GamePage: React.FC = () => {
         name: `Jogador ${i + 1}`,
         score: 0,
         position: 0,
-        avatar: i % 2 === 0 ? '/assets/img/man.png' : '/assets/img/woman.png'
+        avatar: i % 2 === 0 ? getAvatarPath.man() : getAvatarPath.woman()
       });
     }
     setPlayers(newPlayers);
@@ -103,17 +104,16 @@ const GamePage: React.FC = () => {
         : player
     ));
   };
-
   const getGameBoardImage = () => {
     switch (gameSettings.gameMode) {
       case 'kids':
-        return '/assets/img/Tabuleiro kids.png';
+        return getBoardPath.kids();
       case 'adult':
-        return '/assets/img/tabuleiro adulto.png';
+        return getBoardPath.adult();
       case 'simple':
-        return '/assets/img/tabuleiro simple.png';
+        return getBoardPath.simple();
       default:
-        return '/assets/img/tabuleiro adulto.png';
+        return getBoardPath.adult();
     }
   };
 
