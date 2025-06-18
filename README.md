@@ -1,347 +1,258 @@
-# Modern UI React Component Library
+# 🎮 Corra Contra o Tempo
 
-A comprehensive, modern React component library built with TypeScript, Tailwind CSS, and Framer Motion. This template provides a complete foundation for building scalable web applications with beautiful, accessible UI components.
+Uma aplicação web interativa para o jogo de tabuleiro educativo "Corra Contra o Tempo", desenvolvida com React, TypeScript e animações modernas. O projeto apresenta um e-commerce completo para venda do jogo físico e uma versão jogável online.
 
 ![React](https://img.shields.io/badge/React-18.0+-blue.svg)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue.svg)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.0+-blue.svg)
-![Vite](https://img.shields.io/badge/Vite-5.0+-purple.svg)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-11.0+-purple.svg)
+![Vite](https://img.shields.io/badge/Vite-6.0+-yellow.svg)
 
-## ✨ Features
+## 🎯 Sobre o Projeto
 
-### 🎨 **50+ UI Components**
-- **Form Components**: Button, Input, Checkbox, Switch, Select, Radio, Textarea
-- **Data Display**: Table, Badge, Avatar, Progress, Accordion, Card
-- **Navigation**: Breadcrumb, Tabs, Pagination, Menu
-- **Feedback**: Alert, Modal, Tooltip, Toast, Loading states
-- **Layout**: Container, Grid, Flex utilities, Separators
+"Corra Contra o Tempo" é um jogo de tabuleiro educativo projetado para todas as idades, promovendo aprendizado através de diversão. Este projeto web oferece:
 
-### 🌙 **Advanced Theme System**
-- **Multi-theme Support**: Light, Dark, and System preference detection
-- **Real-time Theme Switching**: Seamless transitions between themes
-- **Custom Theme Tokens**: Comprehensive design token system
-- **Consistent Styling**: All components automatically adapt to the selected theme
+- **E-commerce completo** para venda do jogo físico
+- **Versão jogável online** do jogo de tabuleiro
+- **Interface moderna e responsiva** com animações fluidas
+- **Experiência mobile-first** otimizada para todos os dispositivos
 
-### 🎮 **Interactive Playground**
-- **Live Component Testing**: Real-time component customization
-- **Code Generation**: Automatic JSX code generation for each configuration
-- **Property Controls**: Interactive controls for all component properties
-- **Theme Preview**: See how components look in different themes
+## ✨ Características Principais
 
-### ♿ **Accessibility First**
-- **WCAG 2.1 Compliant**: All components meet accessibility standards
-- **Keyboard Navigation**: Full keyboard support for all interactive elements
-- **Screen Reader Support**: Proper ARIA attributes and semantic HTML
-- **Focus Management**: Visible focus indicators and logical tab order
+### 🛒 **E-commerce Integrado**
+- **Catálogo de Produtos**: Diferentes versões do jogo (Kids, Adulto, Simples)
+- **Sistema de Carrinho**: Adicionar/remover produtos com persistência
+- **Checkout Completo**: Processo de compra simplificado
+- **Depoimentos**: Avaliações reais de clientes
+- **FAQ Avançado**: Sistema de perguntas e respostas com busca
 
-### 🚀 **Developer Experience**
-- **TypeScript**: Full type safety with comprehensive type definitions
-- **Hot Reload**: Instant feedback during development
-- **ESLint + Prettier**: Code quality and formatting enforcement
-- **Component Documentation**: Built-in showcase and documentation pages
+### 🎮 **Jogo Online**
+- **Versão Digital**: Jogo de tabuleiro completamente funcional
+- **Timer Interativo**: Cronômetro com controles de pausa/retomar
+- **Sistema de Pontuação**: Tracking de pontos e conquistas
+- **Múltiplos Modos**: Adaptação para diferentes idades
 
-## 🛠️ Tech Stack
+### 🎨 **Interface Moderna**
+- **Design Responsivo**: Perfeito em mobile, tablet e desktop
+- **Animações Fluidas**: Powered by Framer Motion
+- **Tema Adaptativo**: Sistema de tema claro/escuro
+- **Microinterações**: Feedback visual em todas as ações
 
-- **Frontend Framework**: React 18 with hooks and modern patterns
-- **Language**: TypeScript 5+ with strict type checking
-- **Styling**: Tailwind CSS 3+ with custom design system
-- **Animations**: Framer Motion for smooth, performant animations
-- **Build Tool**: Vite for fast development and optimized builds
-- **State Management**: React hooks with context providers
-- **Testing**: Vitest for unit and integration testing
-- **Code Quality**: ESLint, Prettier, and Commitlint
+### 📱 **Mobile-First Experience**
+- **Navegação Touch-Friendly**: Otimizada para dispositivos móveis
+- **Menu Mobile Intuitivo**: Sistema de navegação hamburger
+- **Scroll Otimizado**: Animações adaptativas baseadas na velocidade do scroll
+- **Performance**: Carregamento rápido e suave
 
-## 📦 Installation
+## 🛠️ Stack Tecnológica
 
-### Prerequisites
-- Node.js 18+ 
-- npm or yarn
+- **Frontend**: React 18 com Hooks e padrões modernos
+- **Linguagem**: TypeScript com tipagem estrita
+- **Styling**: Tailwind CSS com sistema de design customizado
+- **Animações**: Framer Motion para animações performáticas
+- **Build**: Vite para desenvolvimento rápido e builds otimizados
+- **State Management**: React Context + Zustand para gerenciamento de estado
+- **Ícones**: Phosphor Icons
+- **UI Components**: Radix UI para componentes acessíveis
 
-### Quick Start
+## 📦 Instalação e Execução
+
+### Pré-requisitos
+- Node.js 18+
+- npm ou yarn
+
+### Início Rápido
 
 ```bash
-# Clone the repository
-git clone <repository-url>
-cd React_template
+# Clone o repositório
+git clone https://github.com/seu-usuario/corra_contra_o_tempo.git
+cd corra_contra_o_tempo
 
-# Install dependencies
+# Instale as dependências
 npm install
 
-# Start development server
+# Inicie o servidor de desenvolvimento
 npm run dev
 
-# Build for production
+# Build para produção
 npm run build
 
-# Run tests
-npm test
-
-# Lint code
-npm run lint
+# Preview da build de produção
+npm run preview
 ```
 
-## 🎯 Usage Examples
+## 🎮 Páginas e Funcionalidades
 
-### Basic Button Usage
-```tsx
-import { Button } from '@/components/ui/Button'
+### 🏠 **Página Principal (E-commerce)**
+- **Hero Section**: Apresentação impactante do jogo
+- **Catálogo de Produtos**: Cards interativos com as versões do jogo
+- **Seção "Como Funciona"**: Explicação detalhada das regras
+- **Depoimentos**: Avaliações de clientes com sistema de estrelas
+- **FAQ Moderno**: Sistema de busca e filtros por categoria
+- **Contato**: Formulário e informações de contato
 
-function MyComponent() {
-  return (
-    <div>
-      <Button variant="primary" size="lg">
-        Click me!
-      </Button>
-      <Button variant="outline" disabled>
-        Disabled
-      </Button>
-    </div>
-  )
-}
+### 🎯 **Página do Jogo**
+- **Interface de Jogo**: Tabuleiro digital interativo
+- **Timer**: Cronômetro com controles avançados
+- **Placar**: Sistema de pontuação em tempo real
+- **Controles**: Botões intuitivos para todas as ações do jogo
+
+### 📚 **Componentes Reutilizáveis**
+- **Header Responsivo**: Navegação desktop e mobile
+- **Footer Moderno**: Links organizados e informações da empresa
+- **Cards de Produto**: Animações hover e estados interativos
+- **Modais e Overlays**: Sistema de feedback visual
+- **Loading States**: Skeletons e animações de carregamento
+
+## 🎨 Sistema de Design
+
+### 🎨 **Paleta de Cores**
+- **Primárias**: Gradientes roxo/azul para ações principais
+- **Secundárias**: Tons neutros para background e textos
+- **Accent**: Cores vibrantes para destaques e CTAs
+- **Estado**: Verde (sucesso), vermelho (erro), amarelo (aviso)
+
+### 📐 **Layout Responsivo**
+```css
+/* Breakpoints */
+sm: 640px    /* Mobile landscape */
+md: 768px    /* Tablet */
+lg: 1024px   /* Desktop */
+xl: 1280px   /* Large desktop */
+2xl: 1536px  /* Extra large */
 ```
 
-### Form Components
-```tsx
-import { Input, Checkbox, Switch } from '@/components/ui'
+### ✨ **Animações**
+- **Micro-interações**: Hover states em todos os elementos clicáveis
+- **Page Transitions**: Transições suaves entre páginas
+- **Scroll Animations**: Elementos animam conforme entram na viewport
+- **Loading Animations**: Estados de carregamento fluidos
 
-function LoginForm() {
-  const [email, setEmail] = useState('')
-  const [rememberMe, setRememberMe] = useState(false)
-  const [notifications, setNotifications] = useState(true)
-
-  return (
-    <form>
-      <Input
-        type="email"
-        placeholder="Enter your email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      
-      <Checkbox
-        checked={rememberMe}
-        onChange={(e) => setRememberMe(e.target.checked)}
-        label="Remember me"
-      />
-      
-      <Switch
-        checked={notifications}
-        onCheckedChange={setNotifications}
-        label="Enable notifications"
-      />
-    </form>
-  )
-}
-```
-
-### Data Table
-```tsx
-import { Table } from '@/components/ui/Table'
-
-const columns = [
-  { header: 'Name', accessor: 'name', sortable: true },
-  { header: 'Email', accessor: 'email', sortable: true },
-  { 
-    header: 'Status', 
-    accessor: 'status',
-    cell: (row) => (
-      <Badge variant={row.status === 'active' ? 'success' : 'secondary'}>
-        {row.status}
-      </Badge>
-    )
-  }
-]
-
-function UserTable({ users }) {
-  return (
-    <Table
-      columns={columns}
-      data={users}
-      selectable
-      sortable
-      caption="User management table"
-    />
-  )
-}
-```
-
-### Theme Integration
-```tsx
-import { useTheme } from '@/hooks/useTheme'
-
-function ThemeToggle() {
-  const { theme, setTheme, actualTheme } = useTheme()
-
-  return (
-    <div>
-      <p>Current theme: {actualTheme}</p>
-      <button onClick={() => setTheme('light')}>Light</button>
-      <button onClick={() => setTheme('dark')}>Dark</button>
-      <button onClick={() => setTheme('system')}>System</button>
-    </div>
-  )
-}
-```
-
-## 📱 Pages & Features
-
-### 🏠 **Home Page**
-- Hero section with animated elements
-- Feature highlights with interactive cards
-- Statistics and company information
-- Call-to-action sections
-
-### 🎨 **Components Page**
-- Comprehensive component gallery
-- Organized by categories (Form, Data, Navigation, Feedback)
-- Live examples with code snippets
-- Search and filter functionality
-
-### 📚 **Documentation Page**
-- Getting started guide
-- API references for all components
-- Best practices and guidelines
-- Integration examples
-
-### 🎮 **Interactive Playground**
-- **Button Playground**: Customize variants, sizes, states
-- **Checkbox Playground**: Test sizes, states, labels
-- **Switch Playground**: Interactive toggle controls
-- **Progress Playground**: Value sliders and variants
-- **Table Playground**: Sorting, selection, pagination
-- **Theme Playground**: Real-time theme switching with component previews
-
-### 🌟 **Showcase Page**
-- Live component demonstrations
-- Interactive examples
-- State management examples
-- Responsive design showcase
-
-## 🎨 Component Variants
-
-### Button Variants
-- `primary` - Main action button
-- `secondary` - Secondary actions  
-- `outline` - Outlined style
-- `ghost` - Minimal style
-- `destructive` - Dangerous actions
-
-### Button Sizes
-- `sm` - Small (compact interfaces)
-- `md` - Medium (default)
-- `lg` - Large (prominent actions)
-- `xl` - Extra large (hero sections)
-
-### Theme Variants
-- `light` - Light mode
-- `dark` - Dark mode  
-- `system` - Follows system preference
-
-## 🏗️ Project Structure
+## 🏗️ Estrutura do Projeto
 
 ```
 src/
 ├── components/
-│   ├── ui/                    # Core UI components
-│   │   ├── Button.tsx
-│   │   ├── Input.tsx
-│   │   ├── Table.tsx
-│   │   └── theme.ts          # Theme tokens and compositions
-│   ├── common/               # Shared layout components
-│   │   ├── PageWrapper.tsx
-│   │   ├── PageHeader.tsx
-│   │   └── animations.ts
-│   └── ErrorFallback.tsx
-├── pages/                    # Application pages
-│   ├── Home.tsx
-│   ├── Components.tsx
-│   ├── Documentation.tsx
-│   ├── Playground.tsx
-│   └── Showcase.tsx
-├── hooks/                    # Custom React hooks
-│   ├── useTheme.ts
-│   └── useMounted.ts
-├── providers/                # Context providers
-│   ├── ThemeProvider.tsx
-│   └── AnimationProvider.tsx
-├── layouts/                  # Layout components
-│   └── Layout.tsx
-├── utils/                    # Utility functions
-│   └── index.ts
-└── types/                    # TypeScript type definitions
-    └── global.d.ts
+│   ├── ui/                     # Componentes base (Button, Input, etc.)
+│   ├── common/                 # Componentes compartilhados
+│   ├── advanced/               # Componentes avançados (scroll, animações)
+│   ├── Header.tsx              # Cabeçalho responsivo
+│   ├── Footer.tsx              # Rodapé moderno
+│   └── FAQ.tsx                 # Sistema de FAQ avançado
+├── pages/
+│   ├── EcommercePage.tsx       # Página principal do e-commerce
+│   ├── GamePage.tsx            # Página do jogo online
+│   └── HomePage.tsx            # Página de entrada
+├── hooks/
+│   ├── useTheme.ts             # Hook de tema
+│   ├── useScrollToTop.ts       # Hook de scroll to top
+│   └── useSmartScrollAnimation.ts # Animações inteligentes de scroll
+├── providers/
+│   ├── ThemeProvider.tsx       # Contexto de tema
+│   └── AnimationProvider.tsx   # Contexto de animações
+├── stores/
+│   └── useAppStore.ts          # Estado global da aplicação
+├── styles/
+│   ├── responsive.css          # Estilos responsivos
+│   └── scroll-optimization.css # Otimizações de scroll
+└── utils/
+    └── index.ts                # Utilitários gerais
 ```
 
-## 🧪 Testing
+## 🚀 Funcionalidades Avançadas
 
-```bash
-# Run all tests
-npm test
+### 📱 **Responsividade Extrema**
+- **Mobile-First**: Design pensado primeiro para mobile
+- **Touch Optimized**: Alvos de toque de 44px mínimo
+- **Viewport Adaptive**: Ajuste automático para diferentes telas
+- **Orientation Support**: Suporte a landscape e portrait
 
-# Run tests in watch mode
-npm run test:watch
+### ⚡ **Performance**
+- **Lazy Loading**: Carregamento sob demanda de componentes
+- **Image Optimization**: Imagens otimizadas para web
+- **Code Splitting**: Divisão inteligente do código
+- **Bundle Analysis**: Análise de tamanho dos bundles
 
-# Generate coverage report
-npm run test:coverage
-```
+### ♿ **Acessibilidade**
+- **WCAG 2.1**: Conformidade com padrões de acessibilidade
+- **Keyboard Navigation**: Navegação completa por teclado
+- **Screen Readers**: Suporte a leitores de tela
+- **Focus Management**: Gerenciamento inteligente de foco
 
-## 🚀 Deployment
+### 🎯 **SEO e Performance**
+- **Meta Tags**: Tags otimizadas para SEO
+- **Open Graph**: Compartilhamento social otimizado
+- **Core Web Vitals**: Métricas de performance otimizadas
+- **Lighthouse Score**: Score 90+ em todas as categorias
 
-### Build for Production
-```bash
-npm run build
-```
+## 🎮 Como Jogar Online
 
-### Preview Production Build
-```bash
-npm run preview
-```
+1. **Acesse a Página do Jogo**: Clique em "Jogar Online" no menu
+2. **Escolha o Modo**: Selecione Kids, Adulto ou Simples
+3. **Configure o Timer**: Defina o tempo de jogo
+4. **Inicie a Partida**: Clique em "Começar" e divirta-se!
 
-### Deploy to Vercel
-```bash
-npm install -g vercel
-vercel deploy
-```
+## 📈 Roadmap
 
-## 🤝 Contributing
+### 🔄 **Próximas Versões**
+- [ ] Sistema de autenticação de usuários
+- [ ] Multiplayer online em tempo real
+- [ ] Rankings e leaderboards
+- [ ] Sistema de conquistas
+- [ ] Chat integrado para jogadores
+- [ ] Modo offline PWA
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'feat: add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+### 🛠️ **Melhorias Técnicas**
+- [ ] Testes automatizados (Jest + Testing Library)
+- [ ] Storybook para documentação de componentes
+- [ ] CI/CD pipeline automatizado
+- [ ] Monitoramento de performance (Sentry)
+- [ ] Analytics integrado (Google Analytics)
 
-### Commit Convention
-This project uses [Conventional Commits](https://www.conventionalcommits.org/):
-- `feat:` - New features
-- `fix:` - Bug fixes
-- `docs:` - Documentation changes
-- `style:` - Code style changes
-- `refactor:` - Code refactoring
-- `test:` - Test additions/modifications
-- `chore:` - Maintenance tasks
+## 🤝 Contribuição
 
-## 📄 License
+1. Faça um fork do projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/nova-feature`)
+3. Commit suas mudanças (`git commit -m 'feat: adiciona nova feature'`)
+4. Push para a branch (`git push origin feature/nova-feature`)
+5. Abra um Pull Request
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+### Convenção de Commits
+Este projeto usa [Conventional Commits](https://www.conventionalcommits.org/):
+- `feat:` - Novas funcionalidades
+- `fix:` - Correções de bugs
+- `docs:` - Alterações na documentação
+- `style:` - Mudanças de estilo de código
+- `refactor:` - Refatoração de código
+- `test:` - Adições/modificações de testes
+- `chore:` - Tarefas de manutenção
 
-## 🙏 Acknowledgments
+## 📄 Licença
 
-- [React](https://reactjs.org/) - The web framework
-- [TypeScript](https://www.typescriptlang.org/) - Type safety
-- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS
-- [Framer Motion](https://www.framer.com/motion/) - Animation library
-- [Phosphor Icons](https://phosphoricons.com/) - Icon library
-- [Radix UI](https://www.radix-ui.com/) - Unstyled, accessible components
+Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
 
-## 📞 Support
+## 👥 Equipe
 
-If you have any questions or need help, please:
-- Open an issue on GitHub
-- Check the documentation in the `/docs` folder
-- Visit the interactive playground for live examples
+- **Desenvolvedor Principal**: Milton Armando
+- **Email**: tekinova.inc@icloud.com
+- **Empresa**: Tekinova Inc.
+
+## 🙏 Agradecimentos
+
+- [React](https://reactjs.org/) - Framework web
+- [TypeScript](https://www.typescriptlang.org/) - Tipagem estática
+- [Tailwind CSS](https://tailwindcss.com/) - Framework CSS utility-first
+- [Framer Motion](https://www.framer.com/motion/) - Biblioteca de animações
+- [Phosphor Icons](https://phosphoricons.com/) - Biblioteca de ícones
+- [Radix UI](https://www.radix-ui.com/) - Componentes acessíveis
+
+## 📞 Suporte
+
+Para dúvidas ou suporte:
+- Abra uma issue no GitHub
+- Entre em contato via email: tekinova.inc@icloud.com
+- Visite nossa seção de FAQ no site
 
 ---
 
-Built with ❤️ using modern web technologies
+🎮 **Desenvolvido com ❤️ para promover educação através da diversão** 🎲

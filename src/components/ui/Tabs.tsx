@@ -29,7 +29,8 @@ export function Tabs({ tabs, activeTab, onChange, className }: TabsProps) {
               "text-sm font-medium transition-all",
               "border-b-2 -mb-px",
               activeTab === tab.id
-                ? [                    tokens.light.border.active,
+                ? [                    
+                    tokens.light.border.active,
                     tokens.light.text.brand,
                     tokens.dark.border.active,
                     tokens.dark.text.brand,

@@ -1,62 +1,47 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { Toaster } from 'react-hot-toast'
-import { ErrorBoundary } from 'react-error-boundary'
-import { ThemeProvider } from './providers/ThemeProvider'
-import { AnimationProvider } from './providers/AnimationProvider'
-import { Layout } from './layouts/Layout'
-import { Home } from './pages/Home'
-import { Components } from './pages/Components'
-import { Documentation } from './pages/Documentation'
-import { Playground } from './pages/Playground'
-import { Showcase } from './pages/Showcase'
-import { ShowcasePage } from './pages/showcase/index'
-import { ErrorFallback } from './components/ErrorFallback'
-import './index.css'
+import React, { useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
+import EcommercePage from './pages/EcommercePage';
+import GamePage from './pages/GamePage';
+import { ThemeProvider } from './providers/ThemeProvider';
+import { useScrollToTopOnRefresh } from './hooks/useScrollToTop';
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 1000 * 60 * 5, // 5 minutes
-      gcTime: 1000 * 60 * 10, // 10 minutes (formerly cacheTime)
-      retry: 1,
-      refetchOnWindowFocus: false,
-    },
-  },
-})
+type CurrentPage = 'home' | 'game';
 
-function App() {
+const App: React.FC = () => {
+  const [currentPage, setCurrentPage] = useState<CurrentPage>('home');
+
+  // Garantir scroll to top em cada refresh
+  useScrollToTopOnRefresh();
+
+  // Override window.history.back for our SPA navigation
+  React.useEffect(() => {
+    const originalBack = window.history.back;
+    window.history.back = () => {
+      if (currentPage === 'game') {
+        setCurrentPage('home');
+      } else {
+        originalBack.call(window.history);
+      }
+    };
+
+    return () => {
+      window.history.back = originalBack;
+    };
+  }, [currentPage]);
+
   return (
-    <ErrorBoundary FallbackComponent={ErrorFallback}>
-      <QueryClientProvider client={queryClient}>
-        <ThemeProvider>
-          <AnimationProvider>            <Router>              <Layout>
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/components" element={<Components />} />
-                  <Route path="/documentation" element={<Documentation />} />
-                  <Route path="/playground" element={<Playground />} />
-                  <Route path="/showcase" element={<Showcase />} />
-                  <Route path="/showcase-detailed" element={<ShowcasePage />} />
-                </Routes>
-              </Layout>
-              <Toaster 
-                position="top-right"
-                toastOptions={{
-                  duration: 4000,
-                  style: {
-                    background: 'hsl(var(--card))',
-                    color: 'hsl(var(--card-foreground))',
-                    border: '1px solid hsl(var(--border))',
-                  },
-                }}
-              />
-            </Router>
-          </AnimationProvider>
-        </ThemeProvider>
-      </QueryClientProvider>
-    </ErrorBoundary>
-  )
-}
+    <ThemeProvider>
+      <div className="min-h-screen">
+        <AnimatePresence mode="wait">
+          {currentPage === 'home' ? (
+            <EcommercePage key="home" onNavigateToGame={() => setCurrentPage('game')} />
+          ) : (
+            <GamePage key="game" />
+          )}
+        </AnimatePresence>
+      </div>
+    </ThemeProvider>
+  );
+};
 
-export default App
+export default App;

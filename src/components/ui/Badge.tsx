@@ -8,9 +8,9 @@ interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
 }
 
 const sizeMap = {
-  sm: 'text-xs px-2 py-0.5 h-5',
-  md: 'text-xs px-2.5 py-1 h-6',
-  lg: 'text-sm px-3 py-1 h-7'
+  sm: 'text-xs sm:text-sm px-2 py-0.5 h-5 font-touch-friendly',
+  md: 'text-xs sm:text-sm px-2.5 py-1 h-6 font-touch-friendly',
+  lg: 'text-sm sm:text-base px-3 py-1 h-7 font-touch-friendly'
 }
 
 const dotSizeMap = {

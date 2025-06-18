@@ -1,0 +1,259 @@
+/* Advanced Scroll Optimization Styles */
+
+/* Container principal com otimizações de performance */
+.smooth-scroll-container {
+  /* GPU acceleration */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  
+  /* Scroll behavior otimizado */
+  scroll-behavior: smooth;
+  
+  /* CSS containment para performance */
+  contain: layout style paint;
+  
+  /* Smooth scrolling no WebKit */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Otimizações quando está scrolling */
+.smooth-scroll-container[data-pause-animations="true"] {
+  /* Reduz animações durante scroll */
+  * {
+    animation-duration: 0.01s !important;
+    transition-duration: 0.01s !important;
+  }
+  
+  /* Mantém transformações suaves */
+  transform {
+    animation-duration: 0.1s !important;
+  }
+}
+
+/* Seções parallax otimizadas */
+.parallax-section {
+  /* GPU layers separadas */
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  
+  /* Contenção de layout */
+  contain: layout style;
+}
+
+/* Indicadores de scroll */
+.scroll-indicator {
+  /* GPU acceleration */
+  transform: translateZ(0);
+  will-change: transform;
+  
+  /* Smooth updates */
+  transition: opacity 0.2s ease;
+}
+
+/* Trigger de scroll */
+.scroll-trigger {
+  /* Otimização de performance */
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  
+  /* Contenção para performance */
+  contain: layout style;
+}
+
+/* Scroll snap otimizado */
+.scroll-snap-container {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.scroll-snap-section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+/* Suporte para reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .smooth-scroll-container {
+    scroll-behavior: auto;
+  }
+  
+  .parallax-section {
+    transform: none !important;
+  }
+  
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Otimizações para dispositivos móveis */
+@media (max-width: 768px) {
+  .smooth-scroll-container {
+    /* Menos GPU intensive em mobile */
+    transform: none;
+    
+    /* Scroll nativo otimizado */
+    -webkit-overflow-scrolling: touch;
+    overflow-scrolling: touch;
+  }
+  
+  .parallax-section {
+    /* Reduz parallax em mobile */
+    transform: none !important;
+  }
+}
+
+/* Estados de loading para scroll */
+.scroll-loading {
+  /* Skeleton loading durante scroll */
+  background: linear-gradient(
+    90deg,
+    transparent 25%,
+    rgba(255, 255, 255, 0.5) 50%,
+    transparent 75%
+  );
+  background-size: 200% 100%;
+  animation: scroll-shimmer 1.5s infinite;
+}
+
+@keyframes scroll-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Otimizações de viewport */
+.viewport-optimized {
+  /* Contenção agressiva para seções fora da tela */
+  content-visibility: auto;
+  contain-intrinsic-size: 0 500px;
+}
+
+/* Intersection observer optimizations */
+.lazy-load-section {
+  /* Placeholder enquanto carrega */
+  min-height: 200px;
+  background: rgba(0, 0, 0, 0.05);
+  
+  /* Smooth transition quando carrega */
+  transition: background 0.3s ease;
+}
+
+.lazy-load-section.loaded {
+  background: transparent;
+}
+
+/* Custom scrollbar com indicador de velocidade */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    to bottom,
+    #ff6b6b var(--scroll-progress, 0%),
+    rgba(255, 107, 107, 0.3) var(--scroll-progress, 0%)
+  );
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    to bottom,
+    #ee5a52,
+    rgba(238, 90, 82, 0.5)
+  );
+}
+
+/* Scroll velocity indicators */
+.velocity-indicator {
+  position: fixed;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  
+  /* Visual feedback da velocidade */
+  opacity: calc(var(--scroll-velocity, 0) * 2);
+  transform: 
+    translateY(-50%) 
+    scale(calc(1 + var(--scroll-velocity, 0) * 0.5));
+  
+  transition: all 0.1s ease;
+}
+
+/* Zoom durante scroll rápido */
+.zoom-on-scroll {
+  transform: scale(calc(1 - var(--scroll-velocity, 0) * 0.1));
+  transition: transform 0.1s ease;
+}
+
+/* Blur durante scroll rápido */
+.blur-on-scroll {
+  filter: blur(calc(var(--scroll-velocity, 0) * 2px));
+  transition: filter 0.1s ease;
+}
+
+/* Seções responsivas ao scroll */
+.scroll-responsive {
+  /* Adapta opacity baseado na velocidade */
+  opacity: calc(1 - var(--scroll-velocity, 0) * 0.5);
+  
+  /* Adapta escala baseado no progresso */
+  transform: scale(calc(1 + var(--scroll-progress, 0) * 0.1));
+  
+  transition: all 0.2s ease;
+}
+
+/* Container para virtual scrolling */
+.virtual-scroll-container {
+  overflow: auto;
+  will-change: scroll-position;
+  
+  /* Smooth scrolling otimizado */
+  scroll-behavior: smooth;
+}
+
+.virtual-scroll-item {
+  /* GPU acceleration */
+  transform: translateZ(0);
+  will-change: transform;
+  
+  /* Contenção de layout */
+  contain: layout style;
+}
+
+/* Estados de scroll para debugging */
+.debug-scroll {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  font-family: monospace;
+  font-size: 12px;
+}
+
+.debug-scroll::before {
+  content: 
+    "Scroll: " attr(data-scroll-y) "px\A"
+    "Velocity: " attr(data-velocity) "\A"
+    "Direction: " attr(data-direction) "\A"
+    "Progress: " attr(data-progress) "%";
+  white-space: pre;
+}

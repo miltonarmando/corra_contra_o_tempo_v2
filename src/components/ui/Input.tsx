@@ -20,7 +20,7 @@ const sizeMap = {
 }
 
 const variantMap = {
-  default: 'border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800',
+  default: 'border border-slate-300 bg-gradient-to-br from-slate-50 to-blue-50',
   filled: 'border-0 bg-slate-100 dark:bg-slate-700',
   outline: 'border-2 border-slate-300 dark:border-slate-600 bg-transparent'
 }

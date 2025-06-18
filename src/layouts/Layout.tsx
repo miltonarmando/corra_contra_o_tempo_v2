@@ -2,20 +2,25 @@ import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { 
-  Sparkle, 
+  User, 
   Sun, 
   Moon, 
   Monitor,
   List,
   X,
   House,
-  Palette,
-  Book,
-  Code
+  RocketLaunch,
+  Certificate,
+  EnvelopeSimple,
+  Article,
+  Briefcase,
+  Cpu
 } from '@phosphor-icons/react'
 import { useTheme } from '@/hooks/useTheme'
 import { Button } from '../components/ui/Button'
 import { Badge } from '../components/ui/Badge'
+import { Magnetic } from '../components/ui/AdvancedMotion'
+import { ScrollProgress } from '../components/ui/AdvancedScrollProgress'
 import { cn } from '../utils'
 
 interface LayoutProps {
@@ -24,9 +29,13 @@ interface LayoutProps {
 
 const navigation = [
   { name: 'Home', href: '/', icon: House },
-  { name: 'Components', href: '/components', icon: Palette },
-  { name: 'Documentation', href: '/documentation', icon: Book },
-  { name: 'Playground', href: '/playground', icon: Code },
+  { name: 'About', href: '/about', icon: User },
+  { name: 'Projects', href: '/projects', icon: RocketLaunch },
+  { name: 'Skills', href: '/skills', icon: Cpu },
+  { name: 'Experience', href: '/experience', icon: Briefcase },
+  { name: 'Certifications', href: '/certifications', icon: Certificate },
+  { name: 'Blog', href: '/blog', icon: Article },
+  { name: 'Contact', href: '/contact', icon: EnvelopeSimple },
 ]
 
 export function Layout({ children }: LayoutProps) {
@@ -36,136 +45,148 @@ export function Layout({ children }: LayoutProps) {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Scroll Progress Bar */}
+      <ScrollProgress />
+      
       {/* Header */}
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             {/* Logo */}
-            <Link to="/" className="flex items-center space-x-3">
-              <div className="relative">
-                <div className="w-8 h-8 bg-gradient-to-r from-primary to-purple-600 rounded-lg flex items-center justify-center">
-                  <Sparkle className="w-5 h-5 text-white" weight="duotone" />
-                </div>
-                <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full animate-pulse" />
-              </div>
-              <div>
-                <h1 className="text-xl font-bold text-foreground">
-                  Modern UI
-                </h1>
-                <p className="text-xs text-muted-foreground hidden sm:block">
-                  React Component Library
-                </p>
-              </div>
-            </Link>
-
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-1">
-              {navigation.map((item) => {
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <Magnetic strength={0.1}>
+                <Link to="/" className="flex items-center space-x-2">
+                  <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center">
+                    <span className="text-white font-bold text-sm">MA</span>
+                  </div>
+                  <span className="font-bold text-lg sm:text-xl md:text-2xl hidden sm:block">Milton Armando</span>
+                </Link>
+              </Magnetic>
+            </motion.div>            {/* Desktop Navigation */}
+            <nav className="hidden xl:flex items-center space-x-1">
+              {navigation.map((item, index) => {
                 const Icon = item.icon
                 const isActive = location.pathname === item.href
                 
                 return (
-                  <Link
+                  <motion.div
                     key={item.name}
-                    to={item.href}
-                    className={cn(
-                      "relative px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200",
-                      "hover:bg-accent hover:text-accent-foreground",
-                      isActive 
-                        ? "text-primary bg-primary/10" 
-                        : "text-muted-foreground"
-                    )}
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: index * 0.1 }}
                   >
-                    <div className="flex items-center space-x-2">
-                      <Icon className="w-4 h-4" />
-                      <span>{item.name}</span>
-                    </div>
-                    {isActive && (
-                      <motion.div
-                        layoutId="activeTab"
-                        className="absolute inset-0 bg-primary/10 rounded-lg"
-                        initial={false}
-                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                      />
-                    )}
-                  </Link>
+                    <Magnetic strength={0.05}>                      <Link
+                        to={item.href}
+                        className={cn(
+                          "flex items-center px-3 py-2 rounded-lg text-sm sm:text-base font-medium transition-colors font-touch-friendly",
+                          "hover:bg-accent hover:text-accent-foreground",
+                          isActive 
+                            ? "bg-accent text-accent-foreground" 
+                            : "text-muted-foreground hover:text-foreground"
+                        )}
+                      >
+                        <Icon className="w-4 h-4 mr-2" />
+                        {item.name}
+                      </Link>
+                    </Magnetic>
+                  </motion.div>
                 )
               })}
             </nav>
 
-            {/* Right side */}
-            <div className="flex items-center space-x-2">
-              <Badge variant="secondary" className="hidden sm:inline-flex">
-                v2.0.0
-              </Badge>
+            {/* Theme Toggle and Mobile Menu */}
+            <div className="flex items-center space-x-4">
+              {/* Status Badge */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="hidden xl:block"
+              >                <Badge variant="success" className="text-xs sm:text-sm font-touch-friendly">
+                  <div className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse" />
+                  <span className="hidden sm:inline">Available for Projects</span>
+                  <span className="sm:hidden">Available</span>
+                </Badge>
+              </motion.div>
 
-              {/* Theme Switcher */}
-              <div className="relative">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => {
-                    const themes = ['light', 'dark', 'system'] as const
-                    const currentIndex = themes.indexOf(theme)
-                    const nextIndex = (currentIndex + 1) % themes.length
-                    setTheme(themes[nextIndex])
-                  }}
-                  className="w-9 h-9"
-                >
-                  {theme === 'light' && <Sun className="w-4 h-4" />}
-                  {theme === 'dark' && <Moon className="w-4 h-4" />}
-                  {theme === 'system' && <Monitor className="w-4 h-4" />}
-                </Button>
-              </div>
-
-              {/* Mobile menu button */}
-              <Button
-                variant="ghost"
-                size="icon"
-                className="md:hidden w-9 h-9"
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              {/* Theme Toggle */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
               >
-                {mobileMenuOpen ? (
-                  <X className="w-4 h-4" />
-                ) : (
-                  <List className="w-4 h-4" />
-                )}
-              </Button>
+                <Magnetic strength={0.1}>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => setTheme(theme === 'light' ? 'dark' : theme === 'dark' ? 'system' : 'light')}
+                    className="w-9 h-9"
+                  >
+                    {theme === 'light' && <Sun className="h-4 w-4" />}
+                    {theme === 'dark' && <Moon className="h-4 w-4" />}
+                    {theme === 'system' && <Monitor className="h-4 w-4" />}
+                  </Button>
+                </Magnetic>
+              </motion.div>              {/* Mobile/Tablet Menu Button */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                className="xl:hidden"
+              >
+                <Magnetic strength={0.1}>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                    className="w-9 h-9"
+                  >
+                    {mobileMenuOpen ? <X className="h-4 w-4" /> : <List className="h-4 w-4" />}
+                  </Button>
+                </Magnetic>
+              </motion.div>
             </div>
           </div>
-        </div>
-
-        {/* Mobile Navigation */}
+        </div>        {/* Mobile Navigation */}
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.2 }}
-              className="md:hidden border-t bg-background/95 backdrop-blur"
+              transition={{ duration: 0.3 }}
+              className="xl:hidden border-t bg-background/95 backdrop-blur"
             >
               <div className="container mx-auto px-4 py-4">
                 <nav className="space-y-2">
-                  {navigation.map((item) => {
+                  {navigation.map((item, index) => {
                     const Icon = item.icon
                     const isActive = location.pathname === item.href
                     
                     return (
-                      <Link
+                      <motion.div
                         key={item.name}
-                        to={item.href}
-                        onClick={() => setMobileMenuOpen(false)}
-                        className={cn(
-                          "flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors",
-                          isActive 
-                            ? "text-primary bg-primary/10" 
-                            : "text-muted-foreground hover:text-foreground hover:bg-accent"
-                        )}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.3, delay: index * 0.05 }}
                       >
-                        <Icon className="w-4 h-4" />
-                        <span>{item.name}</span>
-                      </Link>
+                        <Link
+                          to={item.href}                          onClick={() => setMobileMenuOpen(false)}
+                          className={cn(
+                            "flex items-center px-3 py-2 rounded-lg text-base sm:text-lg font-medium transition-colors font-touch-friendly",
+                            "hover:bg-accent hover:text-accent-foreground touch-manipulation",
+                            isActive 
+                              ? "bg-accent text-accent-foreground" 
+                              : "text-muted-foreground hover:text-foreground"
+                          )}
+                        >                          <Icon className="w-5 h-5 sm:w-6 sm:h-6 mr-3" />
+                          <span className="font-touch-friendly">{item.name}</span>
+                        </Link>
+                      </motion.div>
                     )
                   })}
                 </nav>
@@ -173,41 +194,41 @@ export function Layout({ children }: LayoutProps) {
             </motion.div>
           )}
         </AnimatePresence>
-      </header>      {/* Main Content */}
+      </header>
+
+      {/* Main Content */}
       <main className="flex-1">
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.div
-            key={location.pathname}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.15, ease: "easeInOut" }}
-          >
-            {children}
-          </motion.div>
-        </AnimatePresence>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          {children}
+        </motion.div>
       </main>
 
       {/* Footer */}
-      <footer className="border-t bg-background/95 backdrop-blur">
+      <footer className="border-t bg-background/50 backdrop-blur">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="flex items-center space-x-2">
-              <Sparkle className="w-5 h-5 text-primary" weight="duotone" />
-              <span className="text-sm text-muted-foreground">
-                Built with ❤️ using modern design principles
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="flex flex-col md:flex-row justify-between items-center"
+          >
+            <div className="flex items-center space-x-2 mb-4 md:mb-0">
+              <div className="w-6 h-6 bg-gradient-to-br from-indigo-500 to-purple-600 rounded flex items-center justify-center">
+                <span className="text-white font-bold text-xs">MA</span>
+              </div>              <span className="text-sm sm:text-base text-muted-foreground font-touch-friendly leading-mobile-friendly">
+                © 2025 Milton Armando. Crafted with passion.
               </span>
             </div>
-            <div className="flex items-center space-x-4 text-sm text-muted-foreground">
-              <span>React 18</span>
-              <span>•</span>
-              <span>TypeScript</span>
-              <span>•</span>
-              <span>Tailwind CSS</span>
-              <span>•</span>
-              <span>Framer Motion</span>
+            
+            <div className="flex items-center space-x-4">              <Badge variant="outline" className="text-xs sm:text-sm font-touch-friendly">
+                Expert-Level Portfolio
+              </Badge>
             </div>
-          </div>
+          </motion.div>
         </div>
       </footer>
     </div>

@@ -10,12 +10,12 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const sizeMap = {
-  xs: 'h-7 px-2.5 text-xs font-medium',
-  sm: 'h-8 px-3 text-sm font-medium',
-  md: 'h-10 px-4 text-sm font-semibold',
-  lg: 'h-11 px-6 text-base font-semibold',
-  xl: 'h-12 px-8 text-base font-semibold',
-  icon: 'h-10 w-10 p-0'
+  xs: 'h-8 px-3 text-sm font-medium',
+  sm: 'h-10 px-4 text-sm font-medium',
+  md: 'h-12 px-6 text-base font-semibold',
+  lg: 'h-14 px-8 text-lg font-semibold',
+  xl: 'h-16 px-10 text-xl font-bold',
+  icon: 'h-12 w-12 p-0'
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(

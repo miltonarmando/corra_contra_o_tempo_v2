@@ -1,0 +1,742 @@
+/* Melhorias de Responsividade para o Corra Contra o Tempo */
+
+/* Tipografia responsiva aprimorada - Sistema profissional */
+@layer utilities {
+  /* Sistema de tipografia escalável - Mobile First */
+  .text-responsive-xs {
+    @apply text-xs sm:text-sm md:text-base;
+  }
+  
+  .text-responsive-sm {
+    @apply text-sm sm:text-base md:text-lg;
+  }
+  
+  .text-responsive-base {
+    @apply text-base sm:text-lg md:text-xl;
+  }
+  
+  .text-responsive-lg {
+    @apply text-lg sm:text-xl md:text-2xl;
+  }
+  
+  .text-responsive-xl {
+    @apply text-xl sm:text-2xl md:text-3xl;
+  }
+  
+  .text-responsive-2xl {
+    @apply text-xl sm:text-2xl md:text-3xl lg:text-4xl;
+  }
+  
+  .text-responsive-3xl {
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl;
+  }
+  
+  .text-responsive-4xl {
+    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl;
+  }
+  
+  .text-responsive-hero {
+    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl;
+  }
+  
+  /* Tipografia com proporções harmônicas */
+  .text-mobile-micro {
+    @apply text-xs sm:text-sm;
+    line-height: 1.4;
+  }
+  
+  .text-mobile-tiny {
+    @apply text-sm sm:text-base;
+    line-height: 1.5;
+  }
+  
+  .text-mobile-small {
+    @apply text-base sm:text-lg;
+    line-height: 1.6;
+  }
+  
+  .text-mobile-medium {
+    @apply text-lg sm:text-xl md:text-2xl;
+    line-height: 1.5;
+  }
+  
+  .text-mobile-large {
+    @apply text-xl sm:text-2xl md:text-3xl;
+    line-height: 1.4;
+  }
+  
+  .text-mobile-xl {
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl;
+    line-height: 1.3;
+  }
+  
+  .text-mobile-2xl {
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl;
+    line-height: 1.2;
+  }
+  
+  .text-mobile-3xl {
+    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl;
+    line-height: 1.1;
+  }
+}
+
+/* Melhorias específicas para mobile - Fontes otimizadas */
+@layer utilities {
+  /* Títulos mais legíveis em mobile */
+  .text-mobile-hero {
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+  
+  .text-mobile-title {
+    @apply text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+  
+  .text-mobile-subtitle {
+    @apply text-lg sm:text-xl md:text-2xl lg:text-3xl;
+    line-height: 1.3;
+  }
+  
+  .text-mobile-body {
+    @apply text-sm sm:text-base md:text-lg lg:text-xl;
+    line-height: 1.6;
+  }
+  
+  .text-mobile-caption {
+    @apply text-xs sm:text-sm md:text-base;
+    line-height: 1.5;
+  }
+  
+  /* Melhor legibilidade em dispositivos pequenos */
+  .text-mobile-friendly {
+    font-size: clamp(0.875rem, 3.5vw, 1.125rem);
+    line-height: 1.6;
+  }
+  
+  .heading-mobile-friendly {
+    font-size: clamp(1.25rem, 5vw, 2.5rem);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+  
+  /* Badges e elementos pequenos */
+  .text-mobile-badge {
+    @apply text-xs sm:text-sm;
+    line-height: 1.3;
+    font-weight: 600;
+  }
+  
+  /* Preços e valores importantes */
+  .text-mobile-price {
+    @apply text-xl sm:text-2xl md:text-3xl lg:text-4xl;
+    line-height: 1.2;
+    font-weight: 800;
+  }
+  
+  .text-mobile-price-sm {
+    @apply text-lg sm:text-xl md:text-2xl;
+    line-height: 1.3;
+    font-weight: 700;
+  }
+}
+
+/* Containers responsivos */
+@layer utilities {
+  .container-responsive {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+  
+  .py-responsive {
+    @apply py-8 sm:py-12 lg:py-16 xl:py-20;
+  }
+  
+  .py-responsive-sm {
+    @apply py-6 sm:py-8 lg:py-12;
+  }
+  
+  .mb-responsive {
+    @apply mb-8 sm:mb-12 lg:mb-16;
+  }
+  
+  .gap-responsive {
+    @apply gap-6 sm:gap-8 lg:gap-12;
+  }
+}
+
+/* Grid responsivo aprimorado */
+@layer utilities {
+  .grid-responsive-2 {
+    @apply grid grid-cols-1 lg:grid-cols-2;
+  }
+  
+  .grid-responsive-3 {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3;
+  }
+  
+  .grid-responsive-4 {
+    @apply grid grid-cols-2 md:grid-cols-4;
+  }
+}
+
+/* Botões responsivos */
+@layer utilities {
+  .btn-responsive {
+    @apply text-base sm:text-lg lg:text-xl px-6 sm:px-8 lg:px-12 py-3 sm:py-4 lg:py-5;
+  }
+  
+  .btn-responsive-sm {
+    @apply text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3;
+  }
+}
+
+/* Cards responsivos */
+@layer utilities {
+  .card-responsive {
+    @apply p-4 sm:p-6 lg:p-8;
+  }
+  
+  .card-responsive-sm {
+    @apply p-3 sm:p-4 lg:p-6;
+  }
+}
+
+/* Imagens responsivas */
+@layer utilities {
+  .img-product-responsive {
+    @apply w-48 h-48 sm:w-60 sm:h-60 lg:w-72 lg:h-72;
+  }
+  
+  .img-avatar-responsive {
+    @apply w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24;
+  }
+  
+  .img-icon-responsive {
+    @apply w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16;
+  }
+}
+
+/* Ícones responsivos */
+@layer utilities {
+  .icon-responsive-sm {
+    @apply w-4 h-4 sm:w-5 sm:h-5;
+  }
+  
+  .icon-responsive {
+    @apply w-5 h-5 sm:w-6 sm:h-6;
+  }
+  
+  .icon-responsive-lg {
+    @apply w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8;
+  }
+}
+
+/* Espaçamentos de badges responsivos */
+@layer utilities {
+  .badge-responsive {
+    @apply px-2 py-1 sm:px-3 sm:py-1 text-xs sm:text-sm;
+  }
+  
+  .badge-responsive-lg {
+    @apply px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-base lg:text-lg;
+  }
+}
+
+/* Números grandes responsivos */
+@layer utilities {
+  .number-huge-responsive {
+    @apply text-6xl sm:text-7xl lg:text-8xl;
+  }
+  
+  .number-responsive {
+    @apply text-4xl sm:text-5xl lg:text-6xl;
+  }
+}
+
+/* Círculos de steps responsivos */
+@layer utilities {
+  .step-circle-responsive {
+    @apply w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32;
+    @apply text-3xl sm:text-4xl lg:text-5xl xl:text-6xl;
+  }
+}
+
+/* Animações de hover responsivas */
+@media (hover: hover) {
+  .hover-scale-responsive {
+    @apply hover:scale-105 transition-transform duration-300;
+  }
+}
+
+/* Esconde elementos em mobile se necessário */
+@layer utilities {
+  .hide-mobile {
+    @apply hidden sm:block;
+  }
+  
+  .show-mobile {
+    @apply block sm:hidden;
+  }
+  
+  .flex-mobile {
+    @apply flex sm:hidden;
+  }
+  
+  .hide-desktop {
+    @apply block sm:hidden;
+  }
+}
+
+/* Flex responsivo */
+@layer utilities {
+  .flex-responsive {
+    @apply flex flex-col sm:flex-row;
+  }
+  
+  .items-responsive {
+    @apply items-start sm:items-center;
+  }
+  
+  .justify-responsive {
+    @apply justify-start sm:justify-center;
+  }
+}
+
+/* Larguras responsivas para modais e popups */
+@layer utilities {
+  .modal-responsive {
+    @apply w-full max-w-sm sm:max-w-md lg:max-w-lg xl:max-w-xl;
+  }
+  
+  .content-responsive {
+    @apply max-w-full sm:max-w-2xl lg:max-w-4xl xl:max-w-6xl;
+  }
+}
+
+/* Melhorias específicas para touch devices */
+@media (hover: none) {
+  .touch-friendly {
+    @apply min-h-12 min-w-12;
+  }
+  
+  .btn-touch {
+    @apply py-4 px-6 text-lg;
+  }
+}
+
+/* Touch targets e usabilidade mobile */
+@layer utilities {
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px] flex items-center justify-center;
+  }
+  
+  .touch-target-lg {
+    @apply min-h-[56px] min-w-[56px] flex items-center justify-center;
+  }
+  
+  .mobile-friendly {
+    @apply text-base leading-relaxed;
+  }
+  
+  .mobile-spacing {
+    @apply space-y-4 sm:space-y-6;
+  }
+  
+  .mobile-padding {
+    @apply px-4 py-3 sm:px-6 sm:py-4;
+  }
+    .mobile-margin {
+    @apply mb-3 sm:mb-4 lg:mb-6;
+  }
+}
+
+/* Breakpoint personalizado para xs */
+@media (min-width: 475px) {
+  .xs\:block {
+    display: block;
+  }
+  
+  .xs\:hidden {
+    display: none;
+  }
+  
+  .xs\:text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+  
+  .xs\:text-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+}
+
+/* Melhorias para navegação mobile */
+@layer utilities {
+  .mobile-nav-item {
+    @apply block w-full text-left px-4 py-4 text-lg font-medium rounded-xl transition-all duration-200 touch-target;
+  }
+  
+  .mobile-nav-item:hover {
+    @apply bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400;
+  }
+  
+  .mobile-menu-backdrop {
+    @apply bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg;
+  }
+  
+  .mobile-button {
+    @apply w-12 h-12 rounded-full flex items-center justify-center transition-all duration-200;
+  }
+  
+  .mobile-button:hover {
+    @apply bg-gray-100 dark:bg-gray-800;
+  }
+  
+  .mobile-button:active {
+    @apply scale-95;
+  }
+}
+
+/* Classes avançadas UX/UI responsivo - Seguindo melhores práticas */
+@layer utilities {
+  /* Tipografia com proporção harmônica melhorada */
+  .text-mobile-huge {
+    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+  }
+  
+  .text-mobile-display {
+    @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+  }
+  
+  /* Preços responsivos com melhor hierarquia */
+  .text-mobile-price {
+    @apply text-2xl sm:text-3xl md:text-4xl;
+    line-height: 1.2;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+  
+  .text-mobile-price-large {
+    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl;
+    line-height: 1.1;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Ícones com tamanhos otimizados para touch */
+@layer utilities {
+  .mobile-icon {
+    @apply w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28;
+  }
+  
+  .mobile-icon-sm {
+    @apply w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16;
+  }
+  
+  .mobile-icon-lg {
+    @apply w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32;
+  }
+}
+
+/* Gaps e espaçamentos com progressão natural */
+@layer utilities {
+  .mobile-gap-xs {
+    @apply gap-1 sm:gap-2;
+  }
+  
+  .mobile-gap-sm {
+    @apply gap-2 sm:gap-3 md:gap-4;
+  }
+  
+  .mobile-gap {
+    @apply gap-4 sm:gap-6 md:gap-8;
+  }
+  
+  .mobile-gap-lg {
+    @apply gap-6 sm:gap-8 md:gap-12;
+  }    /* Margens com proporção harmônica - Mais compactas */
+  .mobile-margin-xs {
+    @apply mb-1 sm:mb-2 md:mb-3;
+  }
+  
+  .mobile-margin-sm {
+    @apply mb-2 sm:mb-3 md:mb-4;
+  }
+  
+  .mobile-margin {
+    @apply mb-3 sm:mb-4 md:mb-6;
+  }
+  
+  .mobile-margin-lg {
+    @apply mb-4 sm:mb-6 md:mb-8;
+  }
+}
+
+/* Cards com altura equalizada */
+@layer utilities {
+  .mobile-card-equal {
+    @apply p-4 sm:p-6 lg:p-8 rounded-xl sm:rounded-2xl h-full flex flex-col;
+  }
+  
+  .mobile-card-compact {
+    @apply p-3 sm:p-4 lg:p-6 rounded-lg sm:rounded-xl;
+  }
+  
+  .mobile-card-feature {
+    @apply p-6 sm:p-8 lg:p-12 rounded-2xl sm:rounded-3xl;
+  }
+}
+
+/* Imagens responsivas padronizadas */
+@layer utilities {
+  .mobile-image-standard {
+    @apply w-full h-48 sm:h-56 md:h-64 lg:h-72 xl:h-80 object-contain;
+  }
+  
+  .mobile-image-product {
+    @apply w-auto h-48 sm:h-56 md:h-64 lg:h-72 xl:h-80 max-w-full object-contain;
+  }
+  
+  .mobile-image-hero-product {
+    @apply w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 xl:w-64 xl:h-64 object-contain;
+  }
+}
+
+/* Botões com targets de touch otimizados - CORRIGIDO */
+@layer utilities {
+  .mobile-button {
+    @apply px-8 py-4 text-lg font-semibold rounded-xl w-full;
+    min-height: 56px; /* Touch target WCAG aumentado */
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .mobile-button-large {
+    @apply px-12 py-6 text-xl font-bold rounded-xl;
+    min-height: 64px;
+  }
+  
+  .mobile-button-compact {
+    @apply px-6 py-3 text-base font-medium rounded-lg;
+    min-height: 48px;
+  }
+  
+  /* Botões específicos para diferentes contextos */
+  .mobile-button-cta {
+    @apply px-12 py-6 text-xl font-black rounded-xl;
+    min-height: 64px;
+  }
+  
+  .mobile-button-secondary {
+    @apply px-8 py-4 text-lg font-semibold rounded-xl border-2;
+    min-height: 56px;
+  }
+}
+
+/* Badges otimizados */
+@layer utilities {
+  .mobile-badge {
+    @apply px-3 py-1 sm:px-4 sm:py-2 text-xs sm:text-sm font-bold rounded-full;
+    min-height: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .mobile-badge-large {
+    @apply px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-base font-bold rounded-full;
+    min-height: 36px;
+  }
+}
+
+/* Grid com breakpoints otimizados */
+@layer utilities {
+  .mobile-grid-products {
+    @apply grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12;
+  }
+  
+  .mobile-grid-features {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8;
+  }
+  
+  .mobile-grid-stats {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8;
+  }
+}
+
+/* Animações suaves para mobile */
+@layer utilities {
+  .mobile-transition {
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .mobile-hover {
+    @apply hover:scale-105 transition-transform duration-200;
+  }
+  
+  @media (hover: hover) {
+    .mobile-hover-desktop {
+      @apply hover:scale-105 transition-transform duration-300;
+    }
+  }
+}
+
+/* Círculos de progresso/steps responsivos */
+@layer utilities {
+  .step-circle-responsive {
+    @apply w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .step-circle-large {
+    @apply w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36;
+  }
+}
+
+/* Containers com padding otimizado */
+@layer utilities {
+  .mobile-container-tight {
+    @apply px-3 sm:px-4 md:px-6;
+  }
+  
+  .mobile-container {
+    @apply px-4 sm:px-6 lg:px-8 xl:px-12;
+  }
+  
+  .mobile-container-wide {
+    @apply px-6 sm:px-8 lg:px-12 xl:px-16;
+  }
+}
+
+/* Seções com padding vertical otimizado - Mais compacto */
+@layer utilities {
+  .mobile-section {
+    @apply py-4 sm:py-6 md:py-8 lg:py-10;
+  }
+  
+  .mobile-section-compact {
+    @apply py-3 sm:py-4 md:py-6;
+  }
+  
+  .mobile-section-large {
+    @apply py-6 sm:py-8 md:py-12 lg:py-16;
+  }
+}
+
+/* Utilitários de acessibilidade */
+@layer utilities {
+  .focus-visible-enhanced {
+    @apply focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500;
+  }
+  
+  .reduced-motion {
+    @media (prefers-reduced-motion: reduce) {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+}
+
+/* Correções específicas para o Header - Responsividade Mobile */
+@layer base {
+  /* Prevenir overflow horizontal global */
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+  }
+  
+  /* Container principal sem overflow */
+  #root {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  /* Header melhorado para mobile */
+  .header-mobile-safe {
+    @apply w-full max-w-full;
+    overflow-x: hidden;
+    position: relative;
+    z-index: 1000;
+  }
+  
+  /* Container do header com largura controlada */
+  .header-container {
+    @apply w-full max-w-full px-3 sm:px-4 md:px-6;
+    overflow-x: hidden;
+  }
+  
+  /* Logo responsivo que não causa overflow */
+  .logo-mobile-safe {
+    @apply flex-shrink-0 min-w-0;
+    max-width: calc(100vw - 80px); /* Deixa espaço para o botão mobile */
+  }
+  
+  /* Botão mobile sempre visível */
+  .mobile-menu-button {
+    @apply flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12;
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+    position: relative;
+    z-index: 1001;
+  }
+  
+  /* Menu mobile sem overflow e com z-index alto */
+  .mobile-menu-safe {
+    @apply w-full max-w-full;
+    overflow-x: hidden;
+    left: 0;
+    right: 0;
+    position: relative;
+    z-index: 999;
+  }
+  
+  /* Links do menu mobile com interatividade garantida */
+  .mobile-menu-safe button,
+  .mobile-menu-safe a {
+    position: relative;
+    z-index: 1000;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: rgba(139, 92, 246, 0.1);
+    outline: none;
+  }
+  
+  .mobile-menu-safe button:focus,
+  .mobile-menu-safe a:focus {
+    outline: 2px solid rgb(139, 92, 246);
+    outline-offset: 2px;
+  }
+  
+  /* Garantir que os touch targets sejam acessíveis */
+  .mobile-menu-safe .touch-target {
+    min-height: 48px;
+    min-width: 48px;
+    display: flex;
+    align-items: center;
+    touch-action: manipulation;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  
+  /* Touch targets melhorados */
+  .touch-target-enhanced {
+    @apply min-h-[44px] min-w-[44px];
+    touch-action: manipulation;
+    position: relative;
+    z-index: 100;
+  }
+}

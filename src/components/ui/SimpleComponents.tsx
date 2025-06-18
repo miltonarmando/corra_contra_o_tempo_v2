@@ -19,14 +19,25 @@ export function Checkbox({ id, defaultChecked, disabled, ...props }: any) {
   )
 }
 
+interface RadioItemProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  value: string;
+  id?: string;
+  disabled?: boolean;
+}
+
+interface RadioGroupProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
+  defaultValue?: string;
+}
+
 // Simple Radio implementation
 export const Radio = {
-  Group: ({ children, defaultValue, ...props }: any) => (
+  Group: ({ children, defaultValue, ...props }: RadioGroupProps) => (
     <div className="space-y-3" {...props}>
       {children}
     </div>
   ),
-  Item: ({ value, id, disabled, ...props }: any) => (
+  Item: ({ value, id, disabled, ...props }: RadioItemProps) => (
     <input
       type="radio"
       value={value}
@@ -49,7 +60,7 @@ export function Select({ placeholder, options, multiple, ...props }: any) {
       className={cn(
         "w-full rounded-lg border border-slate-300 px-3 py-2 text-sm",
         "focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20",
-        "bg-white dark:bg-slate-800 dark:border-slate-600"
+        "bg-gradient-to-br from-slate-50 to-blue-50"
       )}
       {...props}
     >
@@ -177,8 +188,8 @@ export const Tabs = {
         "px-3 py-1.5 text-sm font-medium rounded-md transition-colors",
         "focus:outline-none focus:ring-2 focus:ring-indigo-500/20",
         activeTab === value
-          ? "bg-white dark:bg-slate-700 shadow-sm text-indigo-600 dark:text-indigo-400"
-          : "hover:bg-white/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-400"
+          ? "bg-gradient-to-br from-blue-50 to-indigo-50 shadow-sm text-indigo-600"
+          : "hover:bg-gradient-to-br hover:from-slate-50 hover:to-blue-50 text-slate-600"
       )}
       onClick={() => setActiveTab?.(value)}
       {...props}
@@ -237,7 +248,7 @@ export const Modal = {
     isOpen ? (
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50" onClick={() => setIsOpen?.(false)}>
         <div 
-          className="bg-white dark:bg-slate-800 rounded-lg p-6 max-w-md w-full mx-4 shadow-xl" 
+          className="bg-gradient-to-br from-blue-50 to-indigo-50 backdrop-blur-lg rounded-lg p-6 max-w-md w-full mx-4 shadow-xl" 
           onClick={(e) => e.stopPropagation()}
           {...props}
         >

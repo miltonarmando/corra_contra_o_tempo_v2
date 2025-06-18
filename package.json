@@ -1,6 +1,6 @@
 {
   "name": "corra_contra_o_tempo",
-  "homepage": "https://miltonarmando.github.io/corra_contra_o_tempo",
+  "homepage": "https://miltonarmando.github.io/corra_contra_o_tempo_v2",
   "description": "A React-based web application for the game 'Corra Contra o Tempo', featuring a timer, score tracking, and interactive gameplay.",
   "author": "Milton Armando <tekinova.inc@icloud.com>",
   "private": true,
@@ -54,7 +54,7 @@
     "react-hot-toast": "^2.5.2",
     "react-intersection-observer": "^9.8.1",
     "react-query": "^3.39.3",
-    "react-router-dom": "^6.22.2",
+    "react-router-dom": "^6.30.1",
     "swiper": "^11.2.8",
     "zod": "^3.25.64",
     "zustand": "^5.0.5"
