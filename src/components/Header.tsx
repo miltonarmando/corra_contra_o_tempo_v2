@@ -118,7 +118,9 @@ const navigationItems = [
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
             className="flex items-center space-x-2 sm:space-x-3 logo-mobile-safe"
-          >            <img 
+            onClick={() => scrollToSection('#hero')}
+          >
+            <img 
               src={getLogoPath()} 
               alt="Corra Contra o Tempo" 
               className="h-7 sm:h-8 md:h-10 w-auto drop-shadow-lg"

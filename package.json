@@ -5,9 +5,8 @@
   "author": "Milton Armando <tekinova.inc@icloud.com>",
   "private": true,
   "version": "0.0.1",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
+  "type": "module",  "scripts": {
+    "dev": "npm run generate-index:dev && vite",
     "build": "tsc && vite build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
@@ -17,7 +16,9 @@
     "test:coverage": "vitest run --coverage",
     "test:ui": "vitest --ui",
     "clean": "rimraf dist",
-    "prebuild": "npm run clean",
+    "generate-index": "node scripts/generate-index.js",
+    "generate-index:dev": "node scripts/generate-index.js --dev",
+    "prebuild": "npm run clean && npm run generate-index",
     "prepare": "husky install",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"

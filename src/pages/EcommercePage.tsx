@@ -1210,45 +1210,50 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
                   className="relative group h-full flex flex-col"
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.3 }}
-                >
-                  {/* Image container */}
+                >                  {/* Image container */}
                   <div className="relative flex-1 mb-6">
                     {/* Glow effect */}
                     <div className="absolute -inset-4 bg-gradient-to-r from-orange-400/30 to-red-500/30 rounded-3xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500" />
+                      {/* Images container with responsive layout */}
+                    <div className="space-y-4 md:space-y-6">
                       <motion.img 
-                      src={getBoardPath.simple()} 
-                      alt="Tabuleiro do Jogo"
-                      className="w-fit h-fit object-center rounded-2xl shadow-xl relative z-10"
-                      whileHover={{ 
-                        rotateY: 8,
-                        rotateX: 8,
-                        scale: 1.05
-                      }}
-                      transition={{ duration: 0.6 }}
-                    />
-                    <br />                    <motion.img 
-                      src={getCardPath.front()} 
-                      alt="Tabuleiro do Jogo"
-                      className="w-fit h-fit object-center rounded-2xl shadow-xl relative z-10"
-                      whileHover={{ 
-                        rotateY: 8,
-                        rotateX: 8,
-                        scale: 1.05
-                      }}
-                      transition={{ duration: 0.6 }}
-                    />
-                    <br />
-                    <motion.img 
-                      src={getCardPath.rear()} 
-                      alt="Tabuleiro do Jogo"
-                      className="w-fit h-fit object-center rounded-2xl shadow-xl relative z-10"
-                      whileHover={{ 
-                        rotateY: 8,
-                        rotateX: 8,
-                        scale: 1.05
-                      }}
-                      transition={{ duration: 0.6 }}
-                    />
+                        src={getBoardPath.simple()} 
+                        alt="Tabuleiro do Jogo"
+                        className="responsive-image board-image-mobile sm:max-w-sm mx-auto rounded-2xl shadow-xl relative z-10"
+                        whileHover={{ 
+                          rotateY: 8,
+                          rotateX: 8,
+                          scale: 1.05
+                        }}
+                        transition={{ duration: 0.6 }}
+                      />
+                      
+                      {/* Cards container - side by side on larger screens, stacked on mobile */}
+                      <div className="mobile-card-grid sm:tablet-card-grid gap-3 md:gap-4">
+                        <motion.img 
+                          src={getCardPath.front()} 
+                          alt="Carta Frente"
+                          className="responsive-image card-image-mobile sm:max-w-none mx-auto rounded-2xl shadow-xl relative z-10"
+                          whileHover={{ 
+                            rotateY: 8,
+                            rotateX: 8,
+                            scale: 1.05
+                          }}
+                          transition={{ duration: 0.6 }}
+                        />
+                        <motion.img 
+                          src={getCardPath.rear()} 
+                          alt="Carta Verso"
+                          className="responsive-image card-image-mobile sm:max-w-none mx-auto rounded-2xl shadow-xl relative z-10"
+                          whileHover={{ 
+                            rotateY: 8,
+                            rotateX: 8,
+                            scale: 1.05
+                          }}
+                          transition={{ duration: 0.6 }}
+                        />
+                      </div>
+                    </div>
                     
                     {/* Quality badges */}
                     <motion.div

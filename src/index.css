@@ -253,6 +253,86 @@
     transform: translateY(-5px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   }
+  
+  /* Enhanced Responsive Image Styles */
+  /* Responsive image container for product showcase */
+  .responsive-image-container {
+    @apply relative overflow-hidden rounded-2xl;
+  }
+  
+  .responsive-image {
+    @apply w-full h-auto object-contain transition-transform duration-300;
+    max-height: 300px;
+  }
+  
+  .responsive-image:hover {
+    @apply scale-105;
+  }
+  
+  /* Mobile-specific image adjustments */
+  @media (max-width: 640px) {
+    .responsive-image {
+      max-height: 200px;
+    }
+    
+    .product-image-mobile {
+      @apply w-full max-w-[280px] mx-auto h-auto;
+      aspect-ratio: 4/3;
+      object-fit: contain;
+    }
+    
+    /* Card layout adjustments for mobile */
+    .mobile-card-grid {
+      @apply grid grid-cols-1 gap-3;
+    }
+    
+    /* Board image specific mobile styling */
+    .board-image-mobile {
+      @apply w-full max-w-[320px] mx-auto h-auto;
+      max-height: 180px;
+      object-fit: contain;
+    }
+    
+    /* Card image specific mobile styling */
+    .card-image-mobile {
+      @apply w-full max-w-[120px] mx-auto h-auto;
+      max-height: 160px;
+      object-fit: contain;
+    }
+  }
+  
+  /* Tablet adjustments */
+  @media (min-width: 641px) and (max-width: 1024px) {
+    .responsive-image {
+      max-height: 250px;
+    }
+    
+    .tablet-card-grid {
+      @apply grid grid-cols-2 gap-4;
+    }
+  }
+  
+  /* Desktop optimizations */
+  @media (min-width: 1025px) {
+    .responsive-image {
+      max-height: 300px;
+    }
+  }
+  
+  /* Prevent image distortion */
+  .aspect-preserve {
+    @apply object-contain;
+    aspect-ratio: attr(width) / attr(height);
+  }
+  
+  /* Smooth image loading */
+  .image-fade-in {
+    @apply opacity-0 transition-opacity duration-500;
+  }
+  
+  .image-fade-in.loaded {
+    @apply opacity-100;
+  }
 }
 
 @keyframes countdown-pulse {
