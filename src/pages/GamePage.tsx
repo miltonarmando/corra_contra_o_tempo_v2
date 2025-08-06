@@ -133,7 +133,7 @@ const GamePage: React.FC = () => {
 
   if (gameState === 'setup') {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-blue-900 dark:to-indigo-900 p-6">
+      <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 dark:from-gray-900 dark:via-orange-900/20 dark:to-red-900/20 p-6">
         <div className="container mx-auto max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -259,7 +259,7 @@ const GamePage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-blue-900 dark:to-indigo-900 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 dark:from-gray-900 dark:via-orange-900/20 dark:to-red-900/20 p-6">
       <div className="container mx-auto max-w-7xl">
         <AnimatePresence>
           {/* Game Header */}
@@ -443,7 +443,7 @@ const GamePage: React.FC = () => {
               <motion.div
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                className="bg-gradient-to-br from-blue-50/95 to-indigo-50/95 backdrop-blur-lg rounded-xl p-8 max-w-md w-full mx-4"
+                className="bg-gradient-to-br from-orange-50/95 to-amber-50/95 backdrop-blur-lg rounded-xl p-8 max-w-md w-full mx-4"
               >
                 <div className="text-center">
                   <Trophy className="w-16 h-16 text-yellow-500 mx-auto mb-4" />

@@ -40,14 +40,6 @@ export function getLogoPath(): string {
 }
 
 /**
- * Caminho para o favicon SVG
- * @returns Caminho para o favicon
- */
-export function getFaviconPath(): string {
-  return getAssetPath('logo.svg');
-}
-
-/**
  * Caminhos para tabuleiros
  */
 export const getBoardPath = {
@@ -79,10 +71,3 @@ export const getCardPath = {
   front: () => getImagePath('card-front.jpg'),
   rear: () => getImagePath('card-rear.jpg'),
 };
-
-/**
- * Caminho para o manual PDF
- */
-export function getManualPath(): string {
-  return getAssetPath('assets/Manual - Corra Contra o Tempo.pdf');
-}

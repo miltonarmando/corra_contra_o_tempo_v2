@@ -60,7 +60,7 @@ export function Layout({ children }: LayoutProps) {
             >
               <Magnetic strength={0.1}>
                 <Link to="/" className="flex items-center space-x-2">
-                  <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center">
+                  <div className="w-8 h-8 bg-gradient-to-br from-orange-500 to-red-600 rounded-lg flex items-center justify-center">
                     <span className="text-white font-bold text-sm">MA</span>
                   </div>
                   <span className="font-bold text-lg sm:text-xl md:text-2xl hidden sm:block">Milton Armando</span>
@@ -217,7 +217,7 @@ export function Layout({ children }: LayoutProps) {
             className="flex flex-col md:flex-row justify-between items-center"
           >
             <div className="flex items-center space-x-2 mb-4 md:mb-0">
-              <div className="w-6 h-6 bg-gradient-to-br from-indigo-500 to-purple-600 rounded flex items-center justify-center">
+              <div className="w-6 h-6 bg-gradient-to-br from-orange-500 to-red-600 rounded flex items-center justify-center">
                 <span className="text-white font-bold text-xs">MA</span>
               </div>              <span className="text-sm sm:text-base text-muted-foreground font-touch-friendly leading-mobile-friendly">
                 © 2025 Milton Armando. Crafted with passion.

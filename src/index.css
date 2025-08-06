@@ -10,21 +10,21 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 0 0% 0%;
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 0 0% 0%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 0 0% 0%;
     --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
+    --primary-foreground: 0 0% 100%;
     --secondary: 210 40% 96%;
-    --secondary-foreground: 222.2 84% 4.9%;
+    --secondary-foreground: 0 0% 20%;
     --muted: 210 40% 96%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted-foreground: 0 0% 40%;
     --accent: 210 40% 96%;
-    --accent-foreground: 222.2 84% 4.9%;
+    --accent-foreground: 0 0% 20%;
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
     --ring: 221.2 83.2% 53.3%;
@@ -32,24 +32,24 @@
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 9%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 9%;
+    --popover-foreground: 0 0% 100%;
     --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 84% 4.9%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 50.6%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
     --ring: 217.2 91.2% 59.8%;
   }
 }
@@ -71,7 +71,7 @@
   }
   
   .player-turn {
-    @apply animate-pulse bg-gradient-to-r from-blue-500/20 to-purple-500/20;
+    @apply animate-pulse bg-gradient-to-r from-orange-500/20 to-red-500/20;
   }
   
   .winner-celebration {
@@ -102,7 +102,7 @@
   }
   
   .cta-button {
-    @apply bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl;
+    @apply bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl;
   }
   
   .hero-parallax {
@@ -115,7 +115,7 @@
   
   /* Modern ecommerce styles */
   .gradient-text {
-    background: linear-gradient(135deg, #ff6b6b, #ffa726, #ffeb3b);
+    background: linear-gradient(135deg, #1E90FF, #FF4500, #00BFFF);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -142,10 +142,10 @@
   
   @keyframes pulse-glow {
     from {
-      box-shadow: 0 0 20px rgba(255, 107, 107, 0.4);
+      box-shadow: 0 0 20px rgba(30, 144, 255, 0.4);
     }
     to {
-      box-shadow: 0 0 30px rgba(255, 107, 107, 0.8);
+      box-shadow: 0 0 30px rgba(30, 144, 255, 0.8);
     }
   }
   
@@ -154,7 +154,7 @@
   }
   
   .hero-gradient {
-    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 25%, #ff8a65 50%, #ffa726 75%, #ffcc02 100%);
+    background: linear-gradient(135deg, #1E90FF 0%, #00BFFF 25%, #FF4500 50%, #FF0000 75%, #1E90FF 100%);
   }
   
   .card-hover-effect {
@@ -167,7 +167,7 @@
   }
   
   .border-gradient {
-    border-image: linear-gradient(45deg, #ff6b6b, #ffa726) 1;
+    border-image: linear-gradient(45deg, #1E90FF, #FF4500) 1;
   }
   
   .scroll-indicator {
@@ -176,7 +176,7 @@
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, #ff6b6b, #ffa726, #ffcc02);
+    background: linear-gradient(90deg, #1E90FF, #FF4500, #00BFFF);
     transform-origin: 0%;
     z-index: 9999;
   }
@@ -185,14 +185,14 @@
     position: absolute;
     top: -8px;
     right: -8px;
-    background: linear-gradient(135deg, #ff6b6b, #ffa726);
+    background: linear-gradient(135deg, #1E90FF, #FF4500);
     color: white;
     padding: 8px 16px;
     border-radius: 20px;
     font-weight: bold;
     font-size: 12px;
     transform: rotate(12deg);
-    box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
+    box-shadow: 0 4px 12px rgba(30, 144, 255, 0.4);
   }
   
   .testimonial-card {
@@ -207,13 +207,13 @@
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, #ff6b6b, #ffa726, #ffcc02);
+    background: linear-gradient(90deg, #1E90FF, #FF4500, #00BFFF);
   }
   
   .stats-counter {
     font-family: 'JetBrains Mono', monospace;
     font-weight: 800;
-    background: linear-gradient(135deg, #ffeb3b, #ffa726);
+    background: linear-gradient(135deg, #1E90FF, #FF4500);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -252,86 +252,6 @@
     background: rgba(255, 255, 255, 1);
     transform: translateY(-5px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Enhanced Responsive Image Styles */
-  /* Responsive image container for product showcase */
-  .responsive-image-container {
-    @apply relative overflow-hidden rounded-2xl;
-  }
-  
-  .responsive-image {
-    @apply w-full h-auto object-contain transition-transform duration-300;
-    max-height: 300px;
-  }
-  
-  .responsive-image:hover {
-    @apply scale-105;
-  }
-  
-  /* Mobile-specific image adjustments */
-  @media (max-width: 640px) {
-    .responsive-image {
-      max-height: 200px;
-    }
-    
-    .product-image-mobile {
-      @apply w-full max-w-[280px] mx-auto h-auto;
-      aspect-ratio: 4/3;
-      object-fit: contain;
-    }
-    
-    /* Card layout adjustments for mobile */
-    .mobile-card-grid {
-      @apply grid grid-cols-1 gap-3;
-    }
-    
-    /* Board image specific mobile styling */
-    .board-image-mobile {
-      @apply w-full max-w-[320px] mx-auto h-auto;
-      max-height: 180px;
-      object-fit: contain;
-    }
-    
-    /* Card image specific mobile styling */
-    .card-image-mobile {
-      @apply w-full max-w-[120px] mx-auto h-auto;
-      max-height: 160px;
-      object-fit: contain;
-    }
-  }
-  
-  /* Tablet adjustments */
-  @media (min-width: 641px) and (max-width: 1024px) {
-    .responsive-image {
-      max-height: 250px;
-    }
-    
-    .tablet-card-grid {
-      @apply grid grid-cols-2 gap-4;
-    }
-  }
-  
-  /* Desktop optimizations */
-  @media (min-width: 1025px) {
-    .responsive-image {
-      max-height: 300px;
-    }
-  }
-  
-  /* Prevent image distortion */
-  .aspect-preserve {
-    @apply object-contain;
-    aspect-ratio: attr(width) / attr(height);
-  }
-  
-  /* Smooth image loading */
-  .image-fade-in {
-    @apply opacity-0 transition-opacity duration-500;
-  }
-  
-  .image-fade-in.loaded {
-    @apply opacity-100;
   }
 }
 

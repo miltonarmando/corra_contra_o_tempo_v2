@@ -1,6 +1,6 @@
 ﻿import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Question, Clock, Users, Package, ChatCircle, Envelope, MagnifyingGlass, Sparkle } from '@phosphor-icons/react';
+import { Plus, Question, Clock, Users, Package, MagnifyingGlass, Sparkle } from '@phosphor-icons/react';
 
 interface FAQItem {
   question: string;
@@ -120,14 +120,14 @@ const FAQ: React.FC = () => {
   };
 
   return (
-    <section className="relative py-20 bg-gradient-to-br from-slate-900 via-gray-900 to-indigo-900 overflow-hidden">
+    <section className="relative py-20 bg-gradient-to-br from-gray-900 via-blue-900/80 to-red-900/60 overflow-hidden">
       {/* Advanced background effects */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 via-purple-600/10 to-cyan-600/5"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-600/8 via-red-600/12 to-blue-800/6"></div>
       
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div 
-          className="absolute top-20 left-20 w-64 h-64 bg-gradient-conic from-blue-500/20 via-purple-500/20 to-cyan-500/20 rounded-full blur-3xl"
+          className="absolute top-20 left-20 w-64 h-64 bg-gradient-conic from-blue-500/20 via-red-500/20 to-blue-600/20 rounded-full blur-3xl"
           animate={{
             rotate: [0, 360],
             scale: [1, 1.2, 1],
@@ -141,7 +141,7 @@ const FAQ: React.FC = () => {
         />
         
         <motion.div 
-          className="absolute bottom-20 right-20 w-48 h-48 bg-gradient-conic from-purple-500/20 via-pink-500/20 to-orange-500/20 rounded-full blur-2xl"
+          className="absolute bottom-20 right-20 w-48 h-48 bg-gradient-conic from-red-500/20 via-blue-500/20 to-red-600/20 rounded-full blur-2xl"
           animate={{
             rotate: [360, 0],
             scale: [1.2, 1, 1.2],
@@ -165,7 +165,7 @@ const FAQ: React.FC = () => {
           className="text-center mb-16"
         >
           <motion.div 
-            className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-xl rounded-full px-6 py-3 mb-8 border border-white/10"
+            className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-500/20 to-red-500/20 backdrop-blur-xl rounded-full px-6 py-3 mb-8 border border-white/10"
             whileHover={{ scale: 1.05 }}
           >
             <Question className="w-6 h-6 text-blue-400" />
@@ -173,7 +173,7 @@ const FAQ: React.FC = () => {
           </motion.div>
           
           <motion.h2 
-            className="text-5xl md:text-6xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-200 to-purple-200 mb-6"
+            className="text-5xl md:text-6xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-200 to-red-200 mb-6"
             animate={{
               backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
             }}
@@ -211,7 +211,7 @@ const FAQ: React.FC = () => {
                 onClick={() => setActiveView(view.key as 'all' | 'popular')}
                 className={`px-8 py-4 rounded-2xl font-bold transition-all duration-300 ${
                   activeView === view.key
-                    ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-2xl shadow-blue-500/25'
+                    ? 'bg-gradient-to-r from-blue-600 to-red-500 text-white shadow-2xl shadow-blue-500/25'
                     : 'bg-white/5 backdrop-blur-xl text-gray-300 hover:bg-white/10 border border-white/10'
                 }`}
                 whileHover={{ scale: 1.05, y: -2 }}
@@ -250,7 +250,7 @@ const FAQ: React.FC = () => {
                 <p className="text-gray-400 mb-8">Tente pesquisar com outras palavras ou navegue pelas categorias.</p>
                 <motion.button
                   onClick={() => setSearchTerm('')}
-                  className="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-xl font-bold"
+                  className="px-6 py-3 bg-gradient-to-r from-blue-600 to-red-500 text-white rounded-xl font-bold"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -296,7 +296,7 @@ const FAQ: React.FC = () => {
                               ease: "easeInOut"
                             }}
                           >
-                            <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+                            <div className="bg-gradient-to-r from-blue-600 to-red-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
                               <Sparkle className="w-3 h-3" />
                               Popular
                             </div>
@@ -338,7 +338,7 @@ const FAQ: React.FC = () => {
                               transition={{ duration: 0.3 }}
                               className={`flex-shrink-0 p-3 rounded-full transition-all duration-300 ${
                                 isOpen 
-                                  ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white' 
+                                  ? 'bg-gradient-to-r from-blue-600 to-red-500 text-white' 
                                   : 'bg-white/10 text-gray-400 group-hover:bg-white/20 group-hover:text-white'
                               }`}
                             >
@@ -386,84 +386,6 @@ const FAQ: React.FC = () => {
             )}
           </motion.div>
         </AnimatePresence>
-
-        {/* Ultra-modern contact section */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 1 }}
-          viewport={{ once: true }}
-          className="mt-24 text-center"
-        >
-          <div className="relative max-w-4xl mx-auto">
-            {/* Background gradient */}
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-cyan-500/10 rounded-3xl blur-3xl"></div>
-            
-            <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-2xl rounded-3xl border border-white/20 p-12">
-              <motion.div
-                className="mb-8"
-                animate={{
-                  y: [0, -10, 0],
-                  rotateZ: [0, 1, -1, 0]
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              >
-                <div className="w-24 h-24 mx-auto bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center mb-6">
-                  <ChatCircle className="w-12 h-12 text-white" />
-                </div>
-              </motion.div>
-              
-              <h3 className="text-4xl font-black text-white mb-4">
-                Ainda precisa de ajuda?
-              </h3>
-              <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
-                Nossa equipe especializada está sempre pronta para resolver qualquer dúvida sobre o jogo!
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                <motion.a
-                  href="mailto:info@corracontraotempo.co.mz"
-                  className="group relative overflow-hidden px-10 py-5 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-bold rounded-2xl transition-all duration-300"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="relative flex items-center gap-3">
-                    <Envelope className="w-6 h-6" />
-                    <span className="text-lg">Email Direto</span>
-                  </div>
-                </motion.a>
-                
-                <motion.a
-                  href="https://wa.me/258843123456"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative overflow-hidden px-10 py-5 bg-gradient-to-r from-emerald-500 to-green-500 text-white font-bold rounded-2xl transition-all duration-300"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-r from-green-500 to-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="relative flex items-center gap-3">
-                    <ChatCircle className="w-6 h-6" />
-                    <span className="text-lg">WhatsApp</span>
-                  </div>
-                </motion.a>
-              </div>
-              
-              <motion.p
-                className="text-gray-400 text-sm mt-8"
-                animate={{ opacity: [0.5, 1, 0.5] }}
-                transition={{ duration: 3, repeat: Infinity }}
-              >
-                ⚡ Resposta em até 2 horas durante o horário comercial
-              </motion.p>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   );

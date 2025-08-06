@@ -50,10 +50,10 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigateToGame }) => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-blue-900 dark:to-indigo-900">
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 dark:from-gray-900 dark:via-orange-900/20 dark:to-red-900/20">
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-16 pb-12">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-orange-600/10 to-red-600/10" />
         
         <div className="container mx-auto px-6 relative">
           <motion.div 
@@ -69,7 +69,7 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigateToGame }) => {
               />
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6">
+            <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent mb-6">
               Corra Contra o Tempo
             </h1>
               <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
@@ -96,7 +96,7 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigateToGame }) => {
               transition={{ delay: 0.3, duration: 0.6 }}
             >              <Button 
                 size="lg" 
-                className="text-xl px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                className="text-xl px-8 py-4 bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700"
                 onClick={onNavigateToGame}
               >
                 <Play className="w-6 h-6 mr-2" />
@@ -132,8 +132,8 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigateToGame }) => {
                 transition={{ delay: index * 0.1, duration: 0.6 }}
                 viewport={{ once: true }}
               >
-                <Card className="p-8 text-center h-full hover:shadow-xl transition-all duration-300 border-0 bg-gradient-to-br from-blue-50/80 to-indigo-50/80 backdrop-blur-sm">
-                  <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white mb-6 mx-auto">
+                <Card className="p-8 text-center h-full hover:shadow-xl transition-all duration-300 border-0 bg-gradient-to-br from-orange-50/80 to-amber-50/80 backdrop-blur-sm">
+                  <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center text-white mb-6 mx-auto">
                     {feature.icon}
                   </div>
                   <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
@@ -231,7 +231,7 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigateToGame }) => {
       </section>
 
       {/* Game Board Preview */}
-      <section className="py-20 bg-gradient-to-br from-violet-50/60 via-purple-50/60 to-pink-50/60 backdrop-blur-sm">
+      <section className="py-20 bg-gradient-to-br from-orange-50/60 via-amber-50/60 to-yellow-50/60 backdrop-blur-sm">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0 }}
@@ -360,7 +360,7 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigateToGame }) => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">              <Button 
                 size="lg" 
-                className="text-xl px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                className="text-xl px-8 py-4 bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700"
                 onClick={onNavigateToGame}
               >
                 <Play className="w-6 h-6 mr-2" />

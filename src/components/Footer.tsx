@@ -9,7 +9,6 @@ import {
   MapPin,
   Copyright
 } from '@phosphor-icons/react';
-import { Button } from './ui/Button';
 import { getLogoPath } from '../utils/assetPaths';
 
 const Footer: React.FC = () => {
@@ -64,35 +63,8 @@ const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="bg-gray-900 text-white">      {/* Newsletter Section */}
-      <section className="bg-gradient-to-r from-purple-600 to-blue-600 py-8">
-        <div className="container mx-auto px-6">
-          <motion.div
-            {...slideFromLeft}
-            className="text-center max-w-2xl mx-auto"
-          >
-            <h3 className="text-2xl md:text-3xl font-bold mb-4">
-              Fique por Dentro das Novidades!
-            </h3>
-            <p className="text-lg mb-6 opacity-90">
-              Receba promoções exclusivas e seja o primeiro a saber sobre novos lançamentos
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Seu e-mail"
-                className="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-yellow-400"
-              />
-              <Button className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3">
-                Inscrever-se
-              </Button>
-            </div>
-            <p className="text-sm mt-3 opacity-75">
-              Prometemos não enviar spam. Cancele a qualquer momento.
-            </p>
-          </motion.div>
-        </div>
-      </section>      {/* Main Footer */}
+    <footer className="bg-gray-900 text-white">
+      {/* Main Footer */}
       <div className="container mx-auto px-6 py-12">
         <motion.div 
           className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
@@ -256,13 +228,13 @@ const Footer: React.FC = () => {
               </motion.div>
             </motion.div>            
             <motion.div 
-              className="mt-6 p-4 bg-gradient-to-r from-purple-900/50 to-blue-900/50 rounded-lg border border-purple-700/30"
+              className="mt-6 p-4 bg-gradient-to-r from-blue-900/50 to-red-900/50 rounded-lg border border-blue-700/30"
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.9, duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h5 className="font-bold mb-2 text-yellow-400 flex items-center">
+              <h5 className="font-bold mb-2 text-blue-400 flex items-center">
                 ⏰ Horário de Atendimento
               </h5>
               <div className="text-sm text-gray-300 space-y-1">
