@@ -40,6 +40,14 @@ export function getLogoPath(): string {
 }
 
 /**
+ * Atalho para favicon
+ * @returns Caminho para o favicon SVG
+ */
+export function getFaviconPath(): string {
+  return getImagePath('logo.svg');
+}
+
+/**
  * Caminhos para tabuleiros
  */
 export const getBoardPath = {
