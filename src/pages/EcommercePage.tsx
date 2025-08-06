@@ -17,7 +17,7 @@ import { Badge } from '../components/ui/Badge';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import FAQ from '../components/FAQ';
-import { getBoxPath, getBoardPath, getCardPath } from '../utils/assetPaths';
+import { getBoxPath, getBoardPath, getCardPath, getDecorativePath } from '../utils/assetPaths';
 import ScrollProgressIndicator from '../components/ScrollProgressIndicator';
 import BackToTop from '../components/BackToTop';
 import FloatingParticles from '../components/FloatingParticles';
@@ -179,7 +179,7 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
           
           {/* Floating decorative images */}
           <motion.img
-            src="/assets/img/ideal-para-ti.png"
+            src={getDecorativePath.idealParaTi()}
             alt="Ideal para ti"
             className="absolute top-32 left-32 w-20 h-20 md:w-24 md:h-24 opacity-30 hidden lg:block z-0"
             animate={{
@@ -196,7 +196,7 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
           />
           
           <motion.img
-            src="/assets/img/mais-de-2500.png"
+            src={getDecorativePath.maisDe2500()}
             alt="Mais de 2500"
             className="absolute bottom-32 right-32 w-20 h-20 md:w-24 md:h-24 opacity-30 hidden lg:block z-0"
             animate={{
@@ -213,7 +213,7 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
           />
           
           <motion.img
-            src="/assets/img/facil-de-jogar.png"
+            src={getDecorativePath.facilDeJogar()}
             alt="Fácil de jogar"
             className="absolute top-1/2 left-16 w-18 h-18 md:w-20 md:h-20 opacity-25 hidden md:block z-0"
             animate={{
@@ -230,7 +230,7 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
           />
           
           <motion.img
-            src="/assets/img/cartas-especiais.png"
+            src={getDecorativePath.cartasEspeciais()}
             alt="Cartas especiais"
             className="absolute top-1/3 right-16 w-18 h-18 md:w-20 md:h-20 opacity-25 hidden md:block z-0"
             animate={{
@@ -485,7 +485,7 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
         
         {/* Floating decorative images for Como Funciona section */}
         <motion.img
-          src="/assets/img/ideal-para-ti.png"
+          src={getDecorativePath.idealParaTi()}
           alt="Ideal para ti"
           className="absolute top-20 left-8 w-24 h-24 md:w-32 md:h-32 opacity-20 z-0"
           animate={{ 
@@ -500,7 +500,7 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
         />
         
         <motion.img
-          src="/assets/img/facil-de-jogar.png"
+          src={getDecorativePath.facilDeJogar()}
           alt="Fácil de jogar"
           className="absolute top-32 right-12 w-20 h-20 md:w-28 md:h-28 opacity-25 z-0"
           animate={{ 
@@ -792,7 +792,7 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
         
         {/* Floating decorative images for Products section */}
         <motion.img
-          src="/assets/img/mais-de-2500.png"
+          src={getDecorativePath.maisDe2500()}
           alt="Mais de 2500"
           className="absolute top-16 right-8 w-28 h-28 md:w-36 md:h-36 opacity-15 z-0"
           animate={{ 
@@ -808,7 +808,7 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
         />
         
         <motion.img
-          src="/assets/img/cartas-especiais.png"
+          src={getDecorativePath.cartasEspeciais()}
           alt="Cartas especiais"
           className="absolute bottom-32 left-4 w-24 h-24 md:w-32 md:h-32 opacity-20 z-0"
           animate={{ 
@@ -1097,7 +1097,7 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
         
         {/* Floating decorative images for Detalhes section */}
         <motion.img
-          src="/assets/img/cartas-especiais.png"
+          src={getDecorativePath.cartasEspeciais()}
           alt="Cartas especiais"
           className="absolute top-24 left-8 w-32 h-32 md:w-40 md:h-40 opacity-15 z-0"
           animate={{ 
@@ -1112,7 +1112,7 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
         />
         
         <motion.img
-          src="/assets/img/ideal-para-ti.png"
+          src={getDecorativePath.idealParaTi()}
           alt="Ideal para ti"
           className="absolute bottom-20 right-16 w-28 h-28 md:w-36 md:h-36 opacity-18 z-0"
           animate={{ 
@@ -1465,7 +1465,7 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
         
         {/* Floating decorative images for Contact section */}
         <motion.img
-          src="/assets/img/facil-de-jogar.png"
+          src={getDecorativePath.facilDeJogar()}
           alt="Fácil de jogar"
           className="absolute top-8 left-12 w-20 h-20 md:w-24 md:h-24 opacity-10 z-0"
           animate={{ 
@@ -1480,7 +1480,7 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
         />
         
         <motion.img
-          src="/assets/img/mais-de-2500.png"
+          src={getDecorativePath.maisDe2500()}
           alt="Mais de 2500"
           className="absolute bottom-16 right-8 w-24 h-24 md:w-28 md:h-28 opacity-12 z-0"
           animate={{ 

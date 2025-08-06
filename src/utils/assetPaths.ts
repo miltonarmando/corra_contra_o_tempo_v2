@@ -71,3 +71,13 @@ export const getCardPath = {
   front: () => getImagePath('card-front.jpg'),
   rear: () => getImagePath('card-rear.jpg'),
 };
+
+/**
+ * Caminhos para imagens decorativas flutuantes
+ */
+export const getDecorativePath = {
+  idealParaTi: () => getImagePath('ideal-para-ti.png'),
+  maisDe2500: () => getImagePath('mais-de-2500.png'),
+  facilDeJogar: () => getImagePath('facil-de-jogar.png'),
+  cartasEspeciais: () => getImagePath('cartas-especiais.png'),
+};
