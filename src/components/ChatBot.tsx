@@ -16,36 +16,13 @@ interface ChatBotProps {
 
 const ChatBot: React.FC<ChatBotProps> = ({ className = '' }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>(() => {
-    // Recuperar mensagens do sessionStorage ao inicializar
-    try {
-      const stored = sessionStorage.getItem('chatbot-messages');
-      return stored ? JSON.parse(stored).map((msg: Omit<Message, 'timestamp'> & { timestamp: string }) => ({
-        ...msg,
-        timestamp: new Date(msg.timestamp)
-      })) : [];
-    } catch {
-      return [];
-    }
-  });
+  const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // API Key do ambiente (durante build será undefined para GitHub Pages)
-  // Usando nova API key válida
-  const apiKey = import.meta.env.VITE_OPENROUTER_API_KEY || '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';
-
-  // Salvar mensagens no sessionStorage sempre que mudarem
-  useEffect(() => {
-    if (messages.length > 0) {
-      try {
-        sessionStorage.setItem('chatbot-messages', JSON.stringify(messages));
-      } catch {
-        // Ignorar erros de storage
-      }
-    }
-  }, [messages]);
+  // API Key OpenRouter - via variável de ambiente
+  const apiKey = import.meta.env.VITE_OPENROUTER_API_KEY;
 
   // Auto-scroll para a última mensagem
   useEffect(() => {
@@ -55,19 +32,7 @@ const ChatBot: React.FC<ChatBotProps> = ({ className = '' }) => {
   // Mensagem de boas-vindas
   useEffect(() => {
     if (isOpen && messages.length === 0) {
-      // Debug em produção para verificar se API key está sendo carregada
-      console.log('ChatBot - API Key length:', apiKey?.length || 0);
-      console.log('ChatBot - API Key preview:', apiKey?.substring(0, 30) + '...' || 'undefined');
-      console.log('ChatBot - Environment:', import.meta.env.MODE);
-      console.log('ChatBot - All env vars:', Object.keys(import.meta.env));
-      
-      // Testar se a API key tem o formato correto
-      const isValidFormat = apiKey?.startsWith('sk-or-v1-');
-      console.log('ChatBot - API Key format valid:', isValidFormat);
-      
-      const welcomeText = apiKey && apiKey.length > 10 
-        ? 'Olá! 👋 Sou o assistente oficial do "Corra Contra o Tempo" - o jogo onde cada segundo conta! Posso explicar as regras oficiais, pontuação, penalidades, componentes, preços e como comprar.\n\nQue informação precisa sobre o jogo?'
-        : 'Olá! 👋 Sou o assistente do jogo "Corra Contra o Tempo", mas estou temporariamente indisponível. Entre em contato conosco para suporte.';
+      const welcomeText = 'Olá! 👋 Sou o assistente do "Corra Contra o Tempo" - o jogo onde cada segundo conta! \n\nPosso ajudar com regras, preços, componentes e tudo sobre o jogo. Em que posso ajudar?';
         
       setMessages([{
         id: 'welcome',
@@ -76,7 +41,7 @@ const ChatBot: React.FC<ChatBotProps> = ({ className = '' }) => {
         timestamp: new Date()
       }]);
     }
-  }, [isOpen, messages.length, apiKey]);
+  }, [isOpen, messages.length]);
 
   const sendMessage = async () => {
     if (!inputValue.trim()) return;
@@ -92,25 +57,6 @@ const ChatBot: React.FC<ChatBotProps> = ({ className = '' }) => {
     setInputValue('');
     setIsLoading(true);
 
-    // Debug logs
-    if (import.meta.env.DEV) {
-      console.log('ChatBot - Enviando mensagem');
-      console.log('ChatBot - API Key disponível:', !!apiKey);
-    }
-
-    if (!apiKey || apiKey.length < 10) {
-      console.error('ChatBot - API Key não configurada ou inválida');
-      const errorMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        text: '⚠️ ChatBot não configurado. API Key do OpenRouter não encontrada. Entre em contato com o suporte.',
-        isBot: true,
-        timestamp: new Date()
-      };
-      setMessages(prev => [...prev, errorMessage]);
-      setIsLoading(false);
-      return;
-    }
-
     try {
       const botResponse = await callOpenRouterAPI(userMessage.text);
 
@@ -123,9 +69,9 @@ const ChatBot: React.FC<ChatBotProps> = ({ className = '' }) => {
 
       setMessages(prev => [...prev, botMessage]);
     } catch (error) {
-      console.error('ChatBot - Erro crítico:', error);
+      console.error('ChatBot - Erro:', error);
       
-      let errorMessage = '❌ Erro inesperado. Tente novamente.';
+      let errorMessage = '🤖 Algo deu errado. Tente novamente!';
       
       if (error instanceof Error) {
         errorMessage = error.message;
@@ -145,22 +91,24 @@ const ChatBot: React.FC<ChatBotProps> = ({ className = '' }) => {
   };
 
   const callOpenRouterAPI = async (userMessage: string): Promise<string> => {
-    // Criar histórico das últimas 6 mensagens (3 pares pergunta-resposta) para contexto
+    // Criar histórico das últimas 2 mensagens (1 par pergunta-resposta) para contexto
     const conversationHistory = messages
-      .slice(-6) // Últimas 6 mensagens
+      .slice(-2) // Últimas 2 mensagens apenas
       .map(msg => ({
         role: msg.isBot ? 'assistant' : 'user',
         content: msg.text
       }));
 
     const requestBody = {
-      model: 'microsoft/phi-3-mini-128k-instruct:free',
+      model: 'meta-llama/llama-3.2-3b-instruct',
       messages: [
         {
           role: 'system',
-          content: `Você é um assistente especializado EXCLUSIVAMENTE no jogo de tabuleiro "Corra Contra o Tempo" vendido em Moçambique.
+          content: `Você é um assistente especializado no jogo de tabuleiro "Corra Contra o Tempo" vendido em Moçambique.
 
-REGRA FUNDAMENTAL: Só responda perguntas relacionadas ao jogo "Corra Contra o Tempo". Para qualquer pergunta fora deste tópico, responda educadamente que você é especializado apenas no jogo e redirecione a conversa de volta ao jogo.
+PERSONALIDADE: Seja natural, conversacional e entusiasmado sobre o jogo! Evite respostas robotizadas e seja genuinamente útil.
+
+REGRA PRINCIPAL: Responda sobre o jogo de forma amigável. Para perguntas fora do tópico, redirecione educadamente mas sem soar robótico.
 
 INFORMAÇÕES OFICIAIS DO JOGO (baseadas no manual oficial):
 
@@ -223,81 +171,62 @@ CONTATOS PARA COMPRA:
 - Email: info@corracontraotempo.co.mz
 - WhatsApp: Resposta imediata
 
-SUAS FUNÇÕES:
-- Explicar regras oficiais detalhadas
-- Esclarecer pontuação e penalidades
-- Ajudar com dúvidas sobre como jogar
-- Fornecer dicas estratégicas do manual
-- Informar preços e como comprar
-- Manter conversação contextual
-- SEMPRE redirecionar perguntas fora do tópico educadamente
+COMO SER NATURAL NAS RESPOSTAS:
+- Para cumprimentos (oi, olá): responda amigavelmente e pergunte como pode ajudar
+- Para perguntas sobre loja física/endereço: "Não tenho essa informação específica, mas pode contactar pelos números acima para saber onde encontrar!"
+- Para dúvidas do jogo: use as informações oficiais de forma conversacional
+- Para assuntos totalmente fora do jogo: "Minha especialidade é o 'Corra Contra o Tempo'! Que tal falarmos sobre [algo do jogo]?"
+- Seja entusiasmado e útil, não formal demais
 
-DIRETRIZES:
-- APENAS responda sobre o jogo "Corra Contra o Tempo"
-- Para perguntas fora do tópico: "Desculpe, sou especializado apenas no jogo 'Corra Contra o Tempo'. Posso ajudar com [mencione algo relacionado ao jogo]?"
-- Use informações oficiais do manual
-- Seja entusiasmado sobre o jogo
-- Máximo 90 palavras por resposta
-- Mantenha contexto da conversa sobre o jogo
-- Cite regras específicas quando relevante
+EXEMPLOS DE RESPOSTAS NATURAIS:
+- "Oi" → "Olá! Tudo bem? Como posso ajudar com o jogo?"
+- "Loja física?" → "Não tenho info sobre loja física, mas pode ligar para +258 84 312 4567 para saber onde encontrar!"
+- "Como jogar?" → Explique as regras de forma amigável e clara
+- "Preço?" → "Temos promoção! KIDS e ADULTO por 1.500 MT cada. Quer saber mais detalhes?"
 
-EXEMPLOS DE REDIRECIONAMENTO:
-- Pergunta sobre filmes/outros jogos: "Desculpe, sou especializado apenas no jogo 'Corra Contra o Tempo'. Que tal falarmos sobre as regras ou estratégias do jogo?"
-- Pergunta sobre outros tópicos: "Minha especialidade é o jogo 'Corra Contra o Tempo'. Posso ajudar com informações sobre como jogar, preços ou componentes?"`
+Mantenha máximo 200 palavras por resposta e seja genuinamente útil!`
         },
-        ...conversationHistory, // Incluir histórico para contexto
+        ...conversationHistory,
         {
           role: 'user',
           content: userMessage
         }
       ],
-      temperature: 0.4,
-      max_tokens: 150
+      temperature: 0.2,
+      max_tokens: 200
     };
 
-    try {
-      const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${apiKey}`,
-          'Content-Type': 'application/json',
-          'HTTP-Referer': window.location.origin,
-          'X-Title': 'Corra Contra o Tempo - ChatBot'
-        },
-        body: JSON.stringify(requestBody)
-      });
+    const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+        'HTTP-Referer': window.location.origin,
+        'X-Title': 'Corra Contra o Tempo - ChatBot'
+      },
+      body: JSON.stringify(requestBody)
+    });
 
-      if (!response.ok) {
-        const errorText = await response.text();
-        console.error('ChatBot API Error:', response.status, errorText);
-        
-        if (response.status === 401) {
-          throw new Error('🔑 Erro de autenticação. Entre em contato com o suporte.');
-        } else if (response.status === 429) {
-          throw new Error('⏱️ Muitas requisições. Aguarde um momento e tente novamente.');
-        } else if (response.status >= 500) {
-          throw new Error('🔧 Servidor temporariamente indisponível. Tente novamente em alguns minutos.');
-        } else {
-          throw new Error(`❌ Erro ${response.status}. Tente novamente.`);
-        }
+    if (!response.ok) {
+      console.error('ChatBot API Error:', response.status);
+      
+      if (response.status === 401) {
+        throw new Error('🔑 Problema temporário de autenticação. Tente novamente.');
+      } else if (response.status >= 500) {
+        throw new Error('🔧 Serviço temporariamente indisponível. Tente novamente em alguns minutos.');
+      } else {
+        throw new Error('🤖 Erro temporário. Tente novamente.');
       }
-
-      const data = await response.json();
-      
-      const content = data.choices?.[0]?.message?.content;
-      if (!content) {
-        throw new Error('🤖 Resposta vazia. Tente reformular sua pergunta.');
-      }
-      
-      return content.trim();
-      
-    } catch (error) {
-      if (error instanceof TypeError && error.message.includes('fetch')) {
-        throw new Error('🌐 Erro de conexão. Verifique sua internet e tente novamente.');
-      }
-      
-      throw error;
     }
+
+    const data = await response.json();
+    
+    const content = data.choices?.[0]?.message?.content;
+    if (!content) {
+      throw new Error('🤖 Resposta vazia. Tente reformular sua pergunta.');
+    }
+    
+    return content.trim();
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -327,7 +256,7 @@ EXEMPLOS DE REDIRECIONAMENTO:
         className="bg-white rounded-lg shadow-2xl border border-gray-200 flex flex-col overflow-hidden"
         style={{ width: '21rem', height: 'min(calc(100vh - 12rem), 32rem)', minHeight: '20rem' }}
       >
-        {/* Header - ChatBot Fix */}
+        {/* Header */}
         <div className="bg-blue-600 text-white p-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Bot size={20} />
