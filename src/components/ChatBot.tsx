@@ -98,6 +98,19 @@ const ChatBot: React.FC<ChatBotProps> = ({ className = '' }) => {
       console.log('ChatBot - API Key disponível:', !!apiKey);
     }
 
+    if (!apiKey || apiKey.length < 10) {
+      console.error('ChatBot - API Key não configurada ou inválida');
+      const errorMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        text: '⚠️ ChatBot não configurado. API Key do OpenRouter não encontrada. Entre em contato com o suporte.',
+        isBot: true,
+        timestamp: new Date()
+      };
+      setMessages(prev => [...prev, errorMessage]);
+      setIsLoading(false);
+      return;
+    }
+
     try {
       const botResponse = await callOpenRouterAPI(userMessage.text);
 
@@ -112,9 +125,15 @@ const ChatBot: React.FC<ChatBotProps> = ({ className = '' }) => {
     } catch (error) {
       console.error('ChatBot - Erro crítico:', error);
       
+      let errorMessage = '❌ Erro inesperado. Tente novamente.';
+      
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      }
+      
       const errorMsg: Message = {
         id: (Date.now() + 1).toString(),
-        text: 'Desculpe, tive um problema temporário. Pode tentar novamente ou perguntar de forma diferente?',
+        text: errorMessage,
         isBot: true,
         timestamp: new Date()
       };
@@ -126,59 +145,20 @@ const ChatBot: React.FC<ChatBotProps> = ({ className = '' }) => {
   };
 
   const callOpenRouterAPI = async (userMessage: string): Promise<string> => {
-    // Sistema de fallback: respostas locais se API não funcionar
-    const localResponses = {
-      regras: "As regras oficiais: 1) Forme equipas, 2) Narrador descreve palavras em 30 segundos, 3) Cartas normais = 1 ponto, mímicas = 2 pontos, 4) Primeira equipa a alcançar o fim do tabuleiro vence!",
-      como_jogar: "Como jogar: Posicione o tabuleiro, forme equipas, baralhe as cartas, escolha o narrador (10s para começar), vire a ampulheta (30s) e descreva/adivinhe palavras!",
-      pontuacao: "Pontuação: Cartas normais = 1 ponto cada palavra. Cartas de mímica = 2 pontos cada, mas perdem 1 se errarem. Acertando 2 palavras normais ou 1 mímica, a equipa avança!",
-      componentes: "Componentes oficiais: Tabuleiro de pontuação, cartas normais, cartas especiais de mímicas, ampulheta de 30 segundos, peões e brochura de regras.",
-      precos: "Preços promocionais: KIDS = 1.500 MT (antes 1.800), ADULTO = 1.500 MT (antes 1.900). Ambas versões para 2-6 jogadores com entrega em todo Moçambique.",
-      contato: "Contactos: Telefone +258 84 312 4567, Email info@corracontraotempo.co.mz, WhatsApp para resposta imediata.",
-      penalidades: "Penalidades (-1 ponto): Dizer parte da palavra, fazer gestos em cartas normais, usar sons ou apontar objectos nas mímicas.",
-      dicas: "Dicas estratégicas: Narradores usem sinónimos e descrições criativas. Equipas trabalhem juntas - boa cooperação aumenta as hipóteses de sucesso!"
-    };
+    // Criar histórico das últimas 6 mensagens (3 pares pergunta-resposta) para contexto
+    const conversationHistory = messages
+      .slice(-6) // Últimas 6 mensagens
+      .map(msg => ({
+        role: msg.isBot ? 'assistant' : 'user',
+        content: msg.text
+      }));
 
-    // Detectar tipo de pergunta
-    const msg = userMessage.toLowerCase();
-    let response = "";
-
-    if (msg.includes('regra') || msg.includes('como jogar') || msg.includes('como funciona')) {
-      response = localResponses.regras;
-    } else if (msg.includes('pontua') || msg.includes('ponto') || msg.includes('score')) {
-      response = localResponses.pontuacao;
-    } else if (msg.includes('componen') || msg.includes('o que vem') || msg.includes('inclui')) {
-      response = localResponses.componentes;
-    } else if (msg.includes('preço') || msg.includes('preco') || msg.includes('custa') || msg.includes('comprar')) {
-      response = localResponses.precos;
-    } else if (msg.includes('contato') || msg.includes('contacto') || msg.includes('telefone') || msg.includes('email')) {
-      response = localResponses.contato;
-    } else if (msg.includes('penalida') || msg.includes('perder ponto') || msg.includes('erro')) {
-      response = localResponses.penalidades;
-    } else if (msg.includes('dica') || msg.includes('estrateg') || msg.includes('como ganhar')) {
-      response = localResponses.dicas;
-    } else if (msg.includes('olá') || msg.includes('ola') || msg.includes('hi') || msg.includes('hello')) {
-      response = "Olá! Sou especializado no jogo 'Corra Contra o Tempo'. Posso explicar regras, pontuação, preços ou como comprar. O que gostaria de saber?";
-    } else {
-      // Pergunta não relacionada ao jogo
-      response = "Desculpe, sou especializado apenas no jogo 'Corra Contra o Tempo'. Posso ajudar com regras, pontuação, preços, componentes ou contactos para compra. O que gostaria de saber sobre o jogo?";
-    }
-
-    // Tentar API primeiro, usar resposta local como fallback
-    try {
-      // Criar histórico das últimas 6 mensagens (3 pares pergunta-resposta) para contexto
-      const conversationHistory = messages
-        .slice(-6) // Últimas 6 mensagens
-        .map(msg => ({
-          role: msg.isBot ? 'assistant' : 'user',
-          content: msg.text
-        }));
-
-      const requestBody = {
-        model: 'microsoft/phi-3-mini-128k-instruct:free',
-        messages: [
-          {
-            role: 'system',
-            content: `Você é um assistente especializado EXCLUSIVAMENTE no jogo de tabuleiro "Corra Contra o Tempo" vendido em Moçambique.
+    const requestBody = {
+      model: 'microsoft/phi-3-mini-128k-instruct:free',
+      messages: [
+        {
+          role: 'system',
+          content: `Você é um assistente especializado EXCLUSIVAMENTE no jogo de tabuleiro "Corra Contra o Tempo" vendido em Moçambique.
 
 REGRA FUNDAMENTAL: Só responda perguntas relacionadas ao jogo "Corra Contra o Tempo". Para qualquer pergunta fora deste tópico, responda educadamente que você é especializado apenas no jogo e redirecione a conversa de volta ao jogo.
 
@@ -264,17 +244,18 @@ DIRETRIZES:
 EXEMPLOS DE REDIRECIONAMENTO:
 - Pergunta sobre filmes/outros jogos: "Desculpe, sou especializado apenas no jogo 'Corra Contra o Tempo'. Que tal falarmos sobre as regras ou estratégias do jogo?"
 - Pergunta sobre outros tópicos: "Minha especialidade é o jogo 'Corra Contra o Tempo'. Posso ajudar com informações sobre como jogar, preços ou componentes?"`
-          },
-          ...conversationHistory, // Incluir histórico para contexto
-          {
-            role: 'user',
-            content: userMessage
-          }
-        ],
-        temperature: 0.4,
-        max_tokens: 150
-      };
+        },
+        ...conversationHistory, // Incluir histórico para contexto
+        {
+          role: 'user',
+          content: userMessage
+        }
+      ],
+      temperature: 0.4,
+      max_tokens: 150
+    };
 
+    try {
       const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
         method: 'POST',
         headers: {
@@ -287,22 +268,35 @@ EXEMPLOS DE REDIRECIONAMENTO:
       });
 
       if (!response.ok) {
-        console.warn('API falhou, usando resposta local:', response.status);
-        throw new Error('API_FAILED');
+        const errorText = await response.text();
+        console.error('ChatBot API Error:', response.status, errorText);
+        
+        if (response.status === 401) {
+          throw new Error('🔑 Erro de autenticação. Entre em contato com o suporte.');
+        } else if (response.status === 429) {
+          throw new Error('⏱️ Muitas requisições. Aguarde um momento e tente novamente.');
+        } else if (response.status >= 500) {
+          throw new Error('🔧 Servidor temporariamente indisponível. Tente novamente em alguns minutos.');
+        } else {
+          throw new Error(`❌ Erro ${response.status}. Tente novamente.`);
+        }
       }
 
       const data = await response.json();
-      const content = data.choices?.[0]?.message?.content;
       
-      if (content) {
-        return content.trim();
-      } else {
-        throw new Error('API_FAILED');
+      const content = data.choices?.[0]?.message?.content;
+      if (!content) {
+        throw new Error('🤖 Resposta vazia. Tente reformular sua pergunta.');
       }
       
-    } catch {
-      console.log('Usando resposta local para:', userMessage);
-      return response; // Retorna resposta local como fallback
+      return content.trim();
+      
+    } catch (error) {
+      if (error instanceof TypeError && error.message.includes('fetch')) {
+        throw new Error('🌐 Erro de conexão. Verifique sua internet e tente novamente.');
+      }
+      
+      throw error;
     }
   };
 
