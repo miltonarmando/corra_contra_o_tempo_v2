@@ -9,6 +9,14 @@ export default defineConfig(({ command }) => ({
   server: {
     host: '0.0.0.0',
     port: Number(process.env.PORT) || 5173,
+    // Proxy para APIs serverless em desenvolvimento
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+        secure: false,
+      }
+    }
   },
   plugins: [react()],
   css: {

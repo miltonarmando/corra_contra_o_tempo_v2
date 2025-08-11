@@ -26,6 +26,7 @@ import TypewriterEffect from '../components/TypewriterEffect';
 import ProductShowcase from '../components/ProductShowcase';
 import ContentEnhancer from '../components/ContentEnhancer';
 import { SmartAnimatedSection } from '../components/advanced/FluidScrollComponents';
+import ChatBot from '../components/ChatBot';
 
 interface EcommercePageProps {
   onNavigateToGame?: () => void;
@@ -1273,7 +1274,7 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
                     },
                     { 
                       icon: "🎴", 
-                      title: "240 Cartas", 
+                      title: "250 Cartas", 
                       desc: "Cartas com palavras para adivinhar",
                       color: "from-purple-500 to-pink-500",
                       bgColor: "from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20"
@@ -1635,7 +1636,7 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
               {[
                 {
                   icon: "💰",
-                  title: "Margens Atrativas",
+                                   title: "Margens Atrativas",
                   desc: "Faça seu lucro em cada venda",
                   color: "from-green-500 to-emerald-500"
                 },
@@ -1794,10 +1795,12 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
               </motion.div>
             </div>
           </motion.div>
-        </div>      </section>
+        </div>      
+        </section>
       
       <SocialProofNotification />
       <BackToTop />
+      <ChatBot />
       <Footer />
     </div>
   );
