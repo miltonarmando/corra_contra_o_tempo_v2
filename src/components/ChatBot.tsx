@@ -55,7 +55,7 @@ const ChatBot: React.FC<ChatBotProps> = ({ className = '' }) => {
   useEffect(() => {
     if (isOpen && messages.length === 0) {
       const welcomeText = apiKey && apiKey.length > 10 
-        ? 'Olá! 👋 Sou o assistente oficial do "Corra Contra o Tempo" - o jogo onde cada segundo conta! Posso explicar as regras oficiais, pontuação, penalidades, componentes, preços e como comprar.\n\n⚠️ Atenção: Só respondo perguntas sobre este jogo específico. Para outros assuntos, redireciono educadamente.\n\nQue informação precisa sobre o jogo?'
+        ? 'Olá! 👋 Sou o assistente oficial do "Corra Contra o Tempo" - o jogo onde cada segundo conta! Posso explicar as regras oficiais, pontuação, penalidades, componentes, preços e como comprar.\n\nQue informação precisa sobre o jogo?'
         : 'Olá! 👋 Sou o assistente do jogo "Corra Contra o Tempo", mas estou temporariamente indisponível. Entre em contato conosco para suporte.';
         
       setMessages([{
