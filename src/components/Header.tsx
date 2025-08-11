@@ -97,9 +97,11 @@ const Header: React.FC<HeaderProps> = ({ cartItems = 0 }) => {
 
 const navigationItems = [
     { label: 'Início', href: '#hero' },
-    { label: 'Produtos', href: '#produtos' },
     { label: 'Como Funciona', href: '#como-funciona' },
-    { label: 'FAQ', href: '#faq' },
+    { label: 'Produtos', href: '#produtos' },
+    { label: 'Componentes', href: '#detalhes' },
+    { label: 'Testemunhos', href: '#testimonials' },
+    { label: 'Revendedor', href: '#revendedor' },
     { label: 'Contato', href: '#contato' },
   ];return (    <motion.header
       initial={{ y: -100 }}

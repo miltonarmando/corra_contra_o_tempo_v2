@@ -16,14 +16,12 @@ import { Card } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import FAQ from '../components/FAQ';
 import { getBoxPath, getBoardPath, getCardPath, getDecorativePath } from '../utils/assetPaths';
 import ScrollProgressIndicator from '../components/ScrollProgressIndicator';
 import BackToTop from '../components/BackToTop';
 import FloatingParticles from '../components/FloatingParticles';
 import SocialProofNotification from '../components/SocialProofNotification';
 import AnimatedSection from '../components/AnimatedSection';
-import AnimatedCounter from '../components/AnimatedCounter';
 import TypewriterEffect from '../components/TypewriterEffect';
 import ProductShowcase from '../components/ProductShowcase';
 import ContentEnhancer from '../components/ContentEnhancer';
@@ -36,6 +34,8 @@ interface EcommercePageProps {
 // eslint-disable-next-line no-empty-pattern
 const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
   const [selectedVersion, setSelectedVersion] = useState<'kids' | 'adult'>('adult');
+  const [isCard1Flipped, setIsCard1Flipped] = useState(false);
+  const [isCard2Flipped, setIsCard2Flipped] = useState(false);
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 300], [0, -50]);  return (
     <div className="min-h-screen bg-gradient-to-br from-blue-800 via-blue-900 to-red-600">
@@ -319,14 +319,13 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
                   CRIADO EM MOÇAMBIQUE
                 </Badge>
                 
-                <h1 className="text-mobile-3xl font-black mobile-margin leading-none tracking-tight">
-                  <span className="block">CORRA CONTRA O</span>
-                  <span className="block bg-gradient-to-r from-blue-300 via-white to-red-300 bg-clip-text text-transparent">
-                    TEMPO
+                <h1 className="text-mobile-large font-black mobile-margin-sm leading-none tracking-tight">
+                  <span className="bg-gradient-to-r from-blue-300 via-white to-red-300 bg-clip-text text-transparent">
+                    CORRA CONTRA O TEMPO
                   </span>
                 </h1>
                 
-                <p className="text-mobile-small text-amber-100 font-light max-w-3xl mx-auto mobile-margin">
+                <p className="text-mobile-m text-amber-100 font-light max-w-3xl mx-auto mobile-margin">
                   O jogo de tabuleiro 100% moçambicano que desafia sua agilidade mental e reúne toda a família!
                 </p>
                 
@@ -721,12 +720,10 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
             viewport={{ once: true }}
             className="text-center mb-12 sm:mb-16"
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-3 sm:mb-4">
-              Corra Contra o Tempo, em números!
-            </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12 max-w-6xl mx-auto">            <motion.div
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 max-w-7xl mx-auto">            
+            <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.1, duration: 0.8 }}
@@ -735,15 +732,15 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
             >
               <div className="mobile-margin-sm">
                 <motion.div 
-                  className="text-responsive-4xl font-black mobile-margin-xs bg-gradient-to-b from-yellow-300 to-orange-400 bg-clip-text text-transparent"
+                  className="text-4xl md:text-5xl font-black mobile-margin-xs bg-gradient-to-b from-yellow-300 to-orange-400 bg-clip-text text-transparent"
                   whileHover={{ scale: 1.1, rotate: [0, -5, 5, 0] }}
                   transition={{ duration: 0.5 }}
                 >
-                  <AnimatedCounter to={240} />
+                  +2500
                 </motion.div>
-                <h3 className="text-mobile-title font-bold mobile-margin-xs">Cartas de Desafio</h3>
-                <p className="text-mobile-body text-orange-100 leading-relaxed px-2">
-                  Centenas de palavras para descrever e adivinhar em diferentes categorias
+                <h3 className="text-lg md:text-xl font-bold mobile-margin-xs text-white">Palavras</h3>
+                <p className="text-sm text-orange-100 leading-relaxed px-2">
+                  para desafiar os seus conhecimentos
                 </p>
               </div>
             </motion.div>
@@ -755,16 +752,17 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
               viewport={{ once: true }}
               className="text-center"
             >
-              <div className="mobile-margin-sm">                <motion.div 
-                  className="text-responsive-4xl font-black mobile-margin-xs bg-gradient-to-b from-yellow-300 to-orange-400 bg-clip-text text-transparent"
+              <div className="mobile-margin-sm">
+                <motion.div 
+                  className="text-4xl md:text-5xl font-black mobile-margin-xs bg-gradient-to-b from-yellow-300 to-orange-400 bg-clip-text text-transparent"
                   whileHover={{ scale: 1.1, rotate: [0, 5, -5, 0] }}
                   transition={{ duration: 0.5 }}
                 >
-                  2-6
+                  MÍMICAS
                 </motion.div>
-                <h3 className="text-mobile-title font-bold mobile-margin-xs">Jogadores</h3>
-                <p className="text-mobile-body text-orange-100 leading-relaxed px-2">
-                  Perfeito para toda a família, divididos em equipes ou jogando individualmente
+                <h3 className="text-lg md:text-xl font-bold mobile-margin-xs text-white">Cartas Especiais</h3>
+                <p className="text-sm text-orange-100 leading-relaxed px-2">
+                  para tornar o jogo ainda mais divertido
                 </p>
               </div>
             </motion.div>
@@ -776,12 +774,39 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
               viewport={{ once: true }}
               className="text-center"
             >
+              <div className="mobile-margin-sm">
+                <motion.div 
+                  className="text-4xl md:text-5xl font-black mobile-margin-xs bg-gradient-to-b from-yellow-300 to-orange-400 bg-clip-text text-transparent"
+                  whileHover={{ scale: 1.1, rotate: [0, -5, 5, 0] }}
+                  transition={{ duration: 0.5 }}
+                >
+                  IDEAL
+                </motion.div>
+                <h3 className="text-lg md:text-xl font-bold mobile-margin-xs text-white">Para Todas Ocasiões</h3>
+                <p className="text-sm text-orange-100 leading-relaxed px-2">
+                  festas, família e encontros com amigos
+                </p>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.7, duration: 0.8 }}
+              viewport={{ once: true }}
+              className="text-center"
+            >
               <div className="mobile-margin">
-                <div className="text-responsive-4xl font-black mobile-margin-xs bg-gradient-to-b from-yellow-300 to-orange-400 bg-clip-text text-transparent">
-                  30
-                </div>
-                <h3 className="text-mobile-title font-bold mobile-margin-xs">Segundos por Rodada</h3>                <p className="text-mobile-body text-orange-100 leading-relaxed">
-                  Cada rodada dura 30 segundos. Uma partida completa dura entre 30-45 minutos
+                <motion.div 
+                  className="text-4xl md:text-5xl font-black mobile-margin-xs bg-gradient-to-b from-yellow-300 to-orange-400 bg-clip-text text-transparent"
+                  whileHover={{ scale: 1.1, rotate: [0, 5, -5, 0] }}
+                  transition={{ duration: 0.5 }}
+                >
+                  FÁCIL
+                </motion.div>
+                <h3 className="text-lg md:text-xl font-bold mobile-margin-xs text-white">De Jogar</h3>
+                <p className="text-sm text-orange-100 leading-relaxed">
+                  Impossível de parar!
                 </p>
               </div>
             </motion.div>
@@ -994,7 +1019,7 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
                         
                         <div className="flex items-center justify-center text-mobile-caption text-gray-600 dark:text-gray-400 mt-3">
                           <Truck className="icon-responsive-sm mr-1" />
-                          Entrega grátis para todo Moçambique com Custo Adicional
+                          Entrega para todo Moçambique
                         </div>
                       </div>
                     </div>
@@ -1076,14 +1101,16 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
                         
                         <div className="flex items-center justify-center text-mobile-caption text-gray-600 dark:text-gray-400 mt-3">
                           <Truck className="icon-responsive-sm mr-1" />
-                          Entrega grátis para todo Moçambique com Custo Adicional
-                        </div>                      </div>
+                          Entrega para todo Moçambique
+                        </div>                      
+                        </div>
                     </div>
                   </Card>
               </SmartAnimatedSection>
             </div>
             <br />            
-            {/* Comparison note - Enhanced */}            <SmartAnimatedSection direction="scale" delay={0.4} className="text-center mobile-margin" once={false}>
+            {/* Comparison note - Enhanced */}            
+            <SmartAnimatedSection direction="scale" delay={0.4} className="text-center mobile-margin" once={false}>
               <ContentEnhancer variant="highlight">
                 <p className="text-mobile-body text-white max-w-3xl mx-auto leading-relaxed">
                   🎯 Ambas as versões têm o mesmo conteúdo e regras, diferindo apenas na dificuldade das palavras.
@@ -1363,10 +1390,11 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
                   <div className="relative flex-1 mb-6">
                     {/* Glow effect */}
                     <div className="absolute -inset-4 bg-gradient-to-r from-orange-400/30 to-red-500/30 rounded-3xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500" />
-                      <motion.img 
+                    
+                    <motion.img 
                       src={getBoardPath.simple()} 
                       alt="Tabuleiro do Jogo"
-                      className="w-fit h-fit object-center rounded-2xl shadow-xl relative z-10"
+                      className="w-full h-auto object-contain rounded-2xl shadow-xl relative z-10 mb-4"
                       whileHover={{ 
                         rotateY: 8,
                         rotateX: 8,
@@ -1374,29 +1402,82 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
                       }}
                       transition={{ duration: 0.6 }}
                     />
-                    <br />                    <motion.img 
-                      src={getCardPath.front()} 
-                      alt="Tabuleiro do Jogo"
-                      className="w-fit h-fit object-center rounded-2xl shadow-xl relative z-10"
-                      whileHover={{ 
-                        rotateY: 8,
-                        rotateX: 8,
-                        scale: 1.05
-                      }}
-                      transition={{ duration: 0.6 }}
-                    />
-                    <br />
-                    <motion.img 
-                      src={getCardPath.rear()} 
-                      alt="Tabuleiro do Jogo"
-                      className="w-fit h-fit object-center rounded-2xl shadow-xl relative z-10"
-                      whileHover={{ 
-                        rotateY: 8,
-                        rotateX: 8,
-                        scale: 1.05
-                      }}
-                      transition={{ duration: 0.6 }}
-                    />
+                    
+                    {/* Interactive Cards - Stacked vertically with independent flips */}
+                    <div className="flex flex-col items-center gap-3 mb-4 relative">
+                      {/* First Card */}
+                      <motion.div 
+                        className="relative w-80 h-48 cursor-pointer"
+                        style={{ perspective: "1000px" }}
+                        onClick={() => setIsCard1Flipped(!isCard1Flipped)}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <motion.div
+                          className="absolute inset-0 w-full h-full"
+                          style={{ transformStyle: "preserve-3d" }}
+                          animate={{ rotateY: isCard1Flipped ? 180 : 0 }}
+                          transition={{ duration: 0.6 }}
+                        >
+                          {/* Frente da carta */}
+                          <motion.img
+                            src={getCardPath.front()}
+                            alt="Frente da Carta"
+                            className="absolute inset-0 w-full h-full object-cover rounded-lg shadow-xl"
+                            style={{ backfaceVisibility: "hidden" }}
+                          />
+                          
+                          {/* Verso da carta */}
+                          <motion.img
+                            src={getCardPath.rear()}
+                            alt="Verso da Carta"
+                            className="absolute inset-0 w-full h-full object-cover rounded-lg shadow-xl"
+                            style={{ 
+                              backfaceVisibility: "hidden",
+                              transform: "rotateY(180deg)"
+                            }}
+                          />
+                        </motion.div>
+                      </motion.div>
+
+                      {/* Second Card */}
+                      <motion.div 
+                        className="relative w-80 h-48 cursor-pointer"
+                        style={{ perspective: "1000px" }}
+                        onClick={() => setIsCard2Flipped(!isCard2Flipped)}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <motion.div
+                          className="absolute inset-0 w-full h-full"
+                          style={{ transformStyle: "preserve-3d" }}
+                          animate={{ rotateY: isCard2Flipped ? 180 : 0 }}
+                          transition={{ duration: 0.6 }}
+                        >
+                          {/* Frente da carta */}
+                          <motion.img
+                            src={getCardPath.front()}
+                            alt="Frente da Carta"
+                            className="absolute inset-0 w-full h-full object-cover rounded-lg shadow-xl"
+                            style={{ backfaceVisibility: "hidden" }}
+                          />
+                          
+                          {/* Verso da carta */}
+                          <motion.img
+                            src={getCardPath.rear()}
+                            alt="Verso da Carta"
+                            className="absolute inset-0 w-full h-full object-cover rounded-lg shadow-xl"
+                            style={{ 
+                              backfaceVisibility: "hidden",
+                              transform: "rotateY(180deg)"
+                            }}
+                          />
+                        </motion.div>
+                      </motion.div>
+                      
+                      {/* Indicador de clique */}
+                      
+                    </div>
                     
                     {/* Quality badges */}
                     <motion.div
@@ -1453,11 +1534,185 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
           </div>
         </div>
       </section>      
-      {/* FAQ Section - Enhanced with modern animations */}
+      {/* Testimonials Section */}
+      <section id="testimonials" className="py-20 bg-gradient-to-br from-blue-800 via-blue-900 to-red-600 text-white relative overflow-hidden">
+        <div className="container mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-black mb-4 bg-gradient-to-r from-white via-blue-200 to-red-200 bg-clip-text text-transparent">
+              O que dizem nossos clientes
+            </h2>
+            <p className="text-xl text-blue-100 max-w-2xl mx-auto">
+              Mais de 1000 famílias já se divertem com Corra Contra o Tempo!
+            </p>
+          </motion.div>
 
-      <div id="faq">
-        <FAQ />
-      </div>      
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {[
+              {
+                name: "Maria Santos",
+                location: "Maputo",
+                text: "Meus filhos adoram! É o jogo perfeito para reunir a família nos fins de semana. Muito divertido!",
+                rating: 5,
+                delay: 0.1
+              },
+              {
+                name: "João Macamo",
+                location: "Beira",
+                text: "Qualidade excelente e muito bem pensado. As palavras são desafiadoras.",
+                rating: 4,
+                delay: 0.3
+              },
+              {
+                name: "Ana Muchanga",
+                location: "Nampula",
+                text: "Compramos para presentear e foi um sucesso! Agora toda a família quer jogar.",
+                rating: 5,
+                delay: 0.5
+              }
+            ].map((testimonial, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: testimonial.delay, duration: 0.8 }}
+                viewport={{ once: true }}
+                className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20 hover:bg-white/15 transition-all duration-300"
+                whileHover={{ scale: 1.05, y: -10 }}
+              >
+                <div className="flex mb-4">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <motion.span
+                      key={i}
+                      className="text-yellow-400 text-xl"
+                      animate={{ scale: [1, 1.2, 1] }}
+                      transition={{ delay: i * 0.1, duration: 0.5 }}
+                    >
+                      ⭐
+                    </motion.span>
+                  ))}
+                </div>
+                
+                <p className="text-lg text-blue-100 mb-6 italic">
+                  "{testimonial.text}"
+                </p>
+                
+                <div className="border-t border-white/20 pt-4">
+                  <h4 className="font-bold text-white">{testimonial.name}</h4>
+                  <p className="text-blue-200 text-sm">{testimonial.location}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Become a Reseller Section */}
+      <section id="revendedor" className="py-20 bg-gradient-to-br from-green-800 via-blue-800 to-purple-800 text-white relative overflow-hidden">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto text-center">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-4xl md:text-5xl font-black mb-6 bg-gradient-to-r from-green-300 via-blue-300 to-purple-300 bg-clip-text text-transparent">
+                Torne-se um Revendedor
+              </h2>
+              
+              <p className="text-xl text-green-100 mb-8 max-w-2xl mx-auto">
+                Junte-se à nossa rede de revendedores e ganhe dinheiro vendendo o jogo mais divertido de Moçambique!
+              </p>
+            </motion.div>
+
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
+              {[
+                {
+                  icon: "💰",
+                  title: "Margens Atrativas",
+                  desc: "Faça seu lucro em cada venda",
+                  color: "from-green-500 to-emerald-500"
+                },
+                {
+                  icon: "📦",
+                  title: "Estoque Garantido",
+                  desc: "Reposição rápida e confiável",
+                  color: "from-blue-500 to-cyan-500"
+                },
+                {
+                  icon: "🎯",
+                  title: "Suporte Completo",
+                  desc: "Material de marketing e treinamento",
+                  color: "from-purple-500 to-pink-500"
+                }
+              ].map((benefit, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.2, duration: 0.6 }}
+                  viewport={{ once: true }}
+                  className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20"
+                  whileHover={{ scale: 1.05, y: -5 }}
+                >
+                  <motion.div 
+                    className={`w-16 h-16 bg-gradient-to-r ${benefit.color} rounded-full flex items-center justify-center text-3xl mb-4 mx-auto`}
+                    whileHover={{ rotate: 360 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    {benefit.icon}
+                  </motion.div>
+                  
+                  <h3 className="text-xl font-bold mb-2">{benefit.title}</h3>
+                  <p className="text-green-100">{benefit.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.8 }}
+              viewport={{ once: true }}
+              className="bg-gradient-to-r from-green-600 to-blue-600 rounded-3xl p-8"
+            >
+              <h3 className="text-2xl font-bold mb-4">Pronto para começar?</h3>
+              <p className="text-lg mb-6 text-green-100">
+                Entre em contato conosco e descubra como se tornar um revendedor oficial
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button 
+                  size="lg" 
+                  className="bg-white text-green-700 hover:bg-green-50 font-bold"
+                  onClick={() => window.open('https://wa.me/258123456789?text=Olá! Tenho interesse em me tornar revendedor do jogo Corra Contra o Tempo.', '_blank')}
+                >
+                  📱 WhatsApp
+                </Button>
+                <Button 
+                  size="lg" 
+                  variant="outline"
+                  className="border-white text-white hover:bg-white hover:text-green-700 font-bold"
+                  onClick={() => window.location.href = 'mailto:revendedores@corracontraotempo.co.mz'}
+                >
+                  ✉️ Email
+                </Button>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section - Enhanced with modern animations */}
+      {/*<div id="faq">*/}
+        {/*<FAQ />*/}
+      {/*</div>      */}
       
       
       {/* Contact Section */}

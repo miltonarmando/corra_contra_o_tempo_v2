@@ -3,9 +3,7 @@ import { motion } from 'framer-motion';
 import { 
   InstagramLogo, 
   FacebookLogo, 
-  TwitterLogo, 
-  EnvelopeSimple,
-  Phone,
+  TwitterLogo,
   MapPin,
   Copyright
 } from '@phosphor-icons/react';
@@ -45,21 +43,19 @@ const Footer: React.FC = () => {
   };
 
   const socialLinks = [
-    { icon: <InstagramLogo size={24} />, href: 'https://instagram.com/corracontraotempo', label: 'Instagram' },
-    { icon: <FacebookLogo size={24} />, href: 'https://facebook.com/corracontraotempo', label: 'Facebook' },
-    { icon: <TwitterLogo size={24} />, href: 'https://twitter.com/corracontraotempo', label: 'Twitter' },
+    { icon: <InstagramLogo size={24} />, href: 'https://instagram.com/corracontraotempo', label: 'Instagram', color: 'bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600' },
+    { icon: <FacebookLogo size={24} />, href: 'https://facebook.com/corracontraotempo', label: 'Facebook', color: 'bg-blue-600 hover:bg-blue-700' },
+    { icon: <TwitterLogo size={24} />, href: 'https://twitter.com/corracontraotempo', label: 'Twitter', color: 'bg-sky-500 hover:bg-sky-600' },
   ];
   const quickLinks = [
     { label: 'Início', href: '#hero' },
-    { label: 'Produtos', href: '#produtos' },
     { label: 'Como Funciona', href: '#como-funciona' },
-    { label: 'Depoimentos', href: '#avaliacoes' },
-    { label: 'FAQ', href: '#faq' },
+    { label: 'Produtos', href: '#produtos' },
+    { label: 'Componentes', href: '#detalhes' },
+    { label: 'Testemunhos', href: '#testimonials' },
+    { label: 'Revendedor', href: '#revendedor' },
   ];  const supportLinks = [
-    { label: 'Central de Ajuda', href: '#faq' },
-    { label: 'Como Jogar', href: '#detalhes' },
     { label: 'Entre em Contato', href: '#contato' },
-    { label: 'Suporte ao Cliente', href: '#contato' },
   ];
 
   return (
@@ -67,27 +63,23 @@ const Footer: React.FC = () => {
       {/* Main Footer */}
       <div className="container mx-auto px-6 py-12">
         <motion.div 
-          className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center md:text-left"
           {...staggerChildren}
         >
           {/* Company Info - From Left */}
           <motion.div
             {...slideFromLeft}
           >
-            <div className="flex items-center space-x-3 mb-6">              <img 
+            <div className="flex items-center justify-center md:justify-start space-x-4 mb-6">              
+              <img 
                 src={getLogoPath()} 
                 alt="Corra Contra o Tempo" 
                 className="h-8 w-auto"
               />
-              <span className="text-xl font-bold">
-                Corra Contra o Tempo
-              </span>
             </div>
-            <p className="text-gray-300 mb-6 leading-relaxed">
-              O jogo de tabuleiro que está revolucionando as noites em família em Moçambique. 
-              Diversão garantida para todas as idades!
-            </p>            <motion.div 
-              className="flex space-x-4"
+                      
+            <motion.div 
+              className="flex justify-center md:justify-start space-x-4"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.5, staggerChildren: 0.1 }}
@@ -104,7 +96,7 @@ const Footer: React.FC = () => {
                   transition={{ delay: 0.6 + index * 0.1 }}
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-10 h-10 bg-gray-700 hover:bg-purple-600 rounded-full flex items-center justify-center transition-colors"
+                  className={`w-10 h-10 ${social.color} rounded-full flex items-center justify-center transition-all duration-300 shadow-lg`}
                   aria-label={social.label}
                   viewport={{ once: true }}
                 >
@@ -115,7 +107,7 @@ const Footer: React.FC = () => {
           <motion.div
             {...slideFromRight}
           >
-            <h4 className="text-lg font-bold mb-6">Navegação</h4>
+            <h4 className="text-lg font-bold mb-6 text-center md:text-left">Navegação</h4>
             <motion.ul 
               className="space-y-3"
               initial={{ opacity: 0 }}
@@ -130,6 +122,7 @@ const Footer: React.FC = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.4 + index * 0.1 }}
                   viewport={{ once: true }}
+                  className="text-center md:text-left"
                 >
                   <motion.a
                     href={link.href}
@@ -154,10 +147,10 @@ const Footer: React.FC = () => {
             {...slideFromLeft}
             transition={{ ...slideFromLeft.transition, delay: 0.3 }}
           >
-            <h4 className="text-lg font-bold mb-6">Suporte & Ajuda</h4>
+            <h4 className="text-lg font-bold mb-6 text-center md:text-left">Suporte & Ajuda</h4>
             <ul className="space-y-3">
               {supportLinks.map((link, index) => (
-                <li key={index}>
+                <li key={index} className="text-center md:text-left">
                   <a
                     href={link.href}
                     className="text-gray-300 hover:text-purple-400 transition-colors hover:underline"
@@ -175,11 +168,13 @@ const Footer: React.FC = () => {
                 </li>
               ))}
             </ul>
-          </motion.div>          {/* Contact Info - From Right */}
+          </motion.div>          
+          {/* Contact Info - From Right */}
           <motion.div
             {...slideFromRight}
-            transition={{ ...slideFromRight.transition, delay: 0.4 }}          >
-            <h4 className="text-lg font-bold mb-6">Contato</h4>
+            transition={{ ...slideFromRight.transition, delay: 0.4 }}
+          >
+            <h4 className="text-lg font-bold mb-6 text-center md:text-left">Endereço</h4>
             <motion.div 
               className="space-y-4"
               initial={{ opacity: 0 }}
@@ -188,61 +183,22 @@ const Footer: React.FC = () => {
               viewport={{ once: true }}
             >
               <motion.div 
-                className="flex items-start space-x-3"
+                className="flex items-start justify-center md:justify-start space-x-3"
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.6 }}
                 viewport={{ once: true }}
               >
                 <MapPin className="w-5 h-5 text-purple-400 mt-1" />
-                <div className="text-gray-300">
+                <div className="text-gray-300 text-center md:text-left">
                   <p className="font-semibold">Maputo, Moçambique</p>
                   <p className="text-sm">Rua Principal, 123</p>
-                  <p className="text-sm">CEP: 1100</p>                </div>
-              </motion.div>
-              <motion.div 
-                className="flex items-center space-x-3"
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.7 }}
-                viewport={{ once: true }}
-              >
-                <Phone className="w-5 h-5 text-purple-400" />
-                <div className="text-gray-300">
-                  <p className="font-semibold">+258 84 312 4567</p>
-                  <p className="text-sm">WhatsApp disponível</p>
-                </div>
-              </motion.div>
-              <motion.div 
-                className="flex items-center space-x-3"
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.8 }}
-                viewport={{ once: true }}
-              >
-                <EnvelopeSimple className="w-5 h-5 text-purple-400" />
-                <div className="text-gray-300">
-                  <p className="font-semibold">info@corracontraotempo.co.mz</p>
-                  <p className="text-sm">Resposta em até 24h</p>
-                </div>
+                  <p className="text-sm">CEP: 1100</p>                
+                  </div>
               </motion.div>
             </motion.div>            
-            <motion.div 
-              className="mt-6 p-4 bg-gradient-to-r from-blue-900/50 to-red-900/50 rounded-lg border border-blue-700/30"
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.9, duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <h5 className="font-bold mb-2 text-blue-400 flex items-center">
-                ⏰ Horário de Atendimento
-              </h5>
-              <div className="text-sm text-gray-300 space-y-1">
-                <p><strong>Segunda a Sexta:</strong> 8h às 17h</p>
-                <p><strong>Sábado:</strong> 9h às 13h</p>                <p><strong>Domingo:</strong> Fechado</p>
-              </div>
-            </motion.div>
-          </motion.div>        </motion.div>
+          </motion.div>        
+          </motion.div>
       </div>
 
       {/* Bottom Bar */}
@@ -251,14 +207,14 @@ const Footer: React.FC = () => {
         {...slideFromBottom}
       >
         <div className="container mx-auto px-6 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+          <div className="flex flex-col md:flex-row justify-center md:justify-between items-center space-y-4 md:space-y-0 text-center md:text-left">
             <div className="flex items-center space-x-2 text-gray-400">
               <Copyright className="w-4 h-4" />
-              <span>2024 Corra Contra o Tempo. Todos os direitos reservados.</span>
+              <span>2025 Corra Contra o Tempo. Todos os direitos reservados.</span>
             </div>
-              <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 text-sm text-gray-400">
+              <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 text-sm text-gray-400 mr-8">
                 <span className="flex items-center">
-                  Desenvolvido com ❤️ pela Tekinova
+                  Desenvolvido pela Tekinova
                 </span>
               </div>          
             </div>
