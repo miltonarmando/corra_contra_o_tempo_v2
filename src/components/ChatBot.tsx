@@ -33,7 +33,7 @@ const ChatBot: React.FC<ChatBotProps> = ({ className = '' }) => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // API Key do ambiente (durante build será undefined para GitHub Pages)
-  const apiKey = import.meta.env.VITE_OPENROUTER_API_KEY || '';
+  const apiKey = import.meta.env.VITE_OPENROUTER_API_KEY || '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';
 
   // Salvar mensagens no sessionStorage sempre que mudarem
   useEffect(() => {
