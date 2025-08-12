@@ -24,15 +24,16 @@ const ChatBot: React.FC<ChatBotProps> = ({ className = '' }) => {
   // API Key OpenRouter - SOMENTE via variável de ambiente (SEGURANÇA)
   const apiKey = import.meta.env.VITE_OPENROUTER_API_KEY;
 
-  // Debug para verificar se a API key está sendo carregada em produção
+  // Debug para verificar se a API key está sendo carregada (apenas em dev)
   useEffect(() => {
-    if (!apiKey) {
-      console.error('❌ API Key não encontrada!');
-      console.log('Variáveis disponíveis:', Object.keys(import.meta.env));
-      console.log('Mode:', import.meta.env.MODE);
-      console.log('Env completo:', import.meta.env);
-    } else {
-      console.log('✅ API Key carregada:', apiKey.substring(0, 20) + '...');
+    if (import.meta.env.MODE === 'development') {
+      if (!apiKey) {
+        console.error('❌ API Key não encontrada!');
+        console.log('Variáveis disponíveis:', Object.keys(import.meta.env));
+        console.log('Mode:', import.meta.env.MODE);
+      } else {
+        console.log('✅ API Key carregada:', apiKey.substring(0, 20) + '...');
+      }
     }
   }, [apiKey]);
 
@@ -122,7 +123,7 @@ const ChatBot: React.FC<ChatBotProps> = ({ className = '' }) => {
       }));
 
     const requestBody = {
-      model: 'anthropic/claude-3.5-haiku', // Modelo pago - mais estável, menos rate limits
+      model: 'openai/gpt-3.5-turbo', // Modelo gratuito
       messages: [
         {
           role: 'system',
@@ -222,8 +223,7 @@ Mantenha máximo 200 palavras por resposta e seja genuinamente útil!`
       headers: {
         'Authorization': `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
-        'HTTP-Referer': window.location.origin || 'http://localhost:5173',
-        'X-Title': 'Corra Contra o Tempo ChatBot'
+        'HTTP-Referer': 'http://localhost:5173' // FORÇA localhost para indicar desenvolvimento
       },
       body: JSON.stringify(requestBody)
     });
