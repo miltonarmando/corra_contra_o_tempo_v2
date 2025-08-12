@@ -45,10 +45,109 @@ const testimonials: TestimonialData[] = [
     id: 4,
     name: "Carlos Mondlane",
     location: "Matola",
-    text: "Meu filho de 8 anos fica horas jogando. É educativo e divertido ao mesmo tempo. Melhor compra do ano!",
+    text: "Meu filho de 8 anos fica horas jogando. É educativo e divertivo ao mesmo tempo. Melhor compra do ano!",
     rating: 5,
     avatar: "👨🏾",
     gameVersion: "Kids"
+  },
+  {
+    id: 5,
+    name: "Fátima Mucavel",
+    location: "Xai-Xai",
+    text: "Compramos para uma festa de aniversário e foi um sucesso total! Todos se divertiram muito.",
+    rating: 5,
+    avatar: "👩🏽",
+    gameVersion: "Adulto"
+  },
+  {
+    id: 6,
+    name: "António Macuácua",
+    location: "Quelimane",
+    text: "O jogo é fantástico! Ajuda muito no desenvolvimento do vocabulário das crianças de forma divertida.",
+    rating: 5,
+    avatar: "👨🏽",
+    gameVersion: "Kids"
+  },
+  {
+    id: 7,
+    name: "Rosa Manhiça",
+    location: "Chimoio",
+    text: "Já jogámos várias vezes e nunca enjoamos! As palavras são bem escolhidas e o tempo voa.",
+    rating: 4,
+    avatar: "👩🏾",
+    gameVersion: "Adulto"
+  },
+  {
+    id: 8,
+    name: "Pedro Chissano",
+    location: "Inhambane",
+    text: "Minha esposa e eu adoramos jogar com nossos netos. É uma excelente forma de passar tempo juntos.",
+    rating: 5,
+    avatar: "👨🏿",
+    gameVersion: "Kids"
+  },
+  {
+    id: 9,
+    name: "Lurdes Tembe",
+    location: "Tete",
+    text: "Produto de qualidade superior! Chegou bem embalado e as cartas são muito bem feitas.",
+    rating: 5,
+    avatar: "�🏿",
+    gameVersion: "Adulto"
+  },
+  {
+    id: 10,
+    name: "Sérgio Guambe",
+    location: "Pemba",
+    text: "Recomendo para todas as famílias! É diversão garantida e ainda ajuda no aprendizado.",
+    rating: 5,
+    avatar: "�👨🏾",
+    gameVersion: "Kids"
+  },
+  {
+    id: 11,
+    name: "Celeste Nhamuave",
+    location: "Lichinga",
+    text: "Jogamos em família toda sexta-feira. Virou tradição lá em casa! Simplesmente perfeito.",
+    rating: 5,
+    avatar: "👩🏽",
+    gameVersion: "Adulto"
+  },
+  {
+    id: 12,
+    name: "Eduardo Samo",
+    location: "Dondo",
+    text: "Comprei para o meu sobrinho e agora ele quer jogar todo dia. Muito educativo e divertido!",
+    rating: 4,
+    avatar: "👨🏽",
+    gameVersion: "Kids"
+  },
+  {
+    id: 13,
+    name: "Benedita Mahanjane",
+    location: "Nacala",
+    text: "Excelente para desenvolver raciocínio rápido! Meus filhos melhoraram muito na escola depois de jogarem.",
+    rating: 5,
+    avatar: "👩🏾",
+    gameVersion: "Adulto"
+  },
+  {
+    id: 14,
+    name: "Tomás Nhantumbo",
+    location: "Vilanculos",
+    text: "Produto 100% moçambicano de qualidade internacional! Orgulho do nosso país.",
+    rating: 5,
+    avatar: "👨🏿",
+    gameVersion: "Kids"
+  },
+  {
+    id: 15,
+    name: "Isabel Mangue",
+    location: "Cuamba",
+    text: "Melhor investimento em entretenimento familiar que já fiz! Vale cada metical gasto.",
+    rating: 5,
+    avatar: "👩🏿",
+    gameVersion: "Adulto"
   }
 ];
 
@@ -108,23 +207,20 @@ const TestimonialCarousel: React.FC = () => {
               
               {/* Author info */}
               <motion.div
-                className="flex items-center justify-center gap-4"
+                className="text-center"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.6 }}
               >
-                <div className="text-4xl">{currentTestimonial.avatar}</div>
-                <div className="text-center">
-                  <h4 className="font-bold text-gray-900 dark:text-white text-lg">
-                    {currentTestimonial.name}
-                  </h4>
-                  <p className="text-gray-600 dark:text-gray-400">
-                    {currentTestimonial.location}
-                  </p>
-                  <span className="inline-block mt-1 px-3 py-1 bg-orange-500 text-white text-sm rounded-full">
-                    Versão {currentTestimonial.gameVersion}
-                  </span>
-                </div>
+                <h4 className="font-bold text-gray-900 dark:text-white text-lg">
+                  {currentTestimonial.name}
+                </h4>
+                <p className="text-gray-600 dark:text-gray-400">
+                  {currentTestimonial.location}
+                </p>
+                <span className="inline-block mt-1 px-3 py-1 bg-orange-500 text-white text-sm rounded-full">
+                  Versão {currentTestimonial.gameVersion}
+                </span>
               </motion.div>
             </div>
             
@@ -133,21 +229,6 @@ const TestimonialCarousel: React.FC = () => {
           </Card>
         </motion.div>
       </AnimatePresence>
-      
-      {/* Indicators */}
-      <div className="flex justify-center mt-8 gap-2">
-        {testimonials.map((_, index) => (
-          <motion.button
-            key={index}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              index === currentIndex ? 'bg-orange-500 w-8' : 'bg-gray-300'
-            }`}
-            onClick={() => setCurrentIndex(index)}
-            whileHover={{ scale: 1.2 }}
-            whileTap={{ scale: 0.9 }}
-          />
-        ))}
-      </div>
     </div>
   );
 };

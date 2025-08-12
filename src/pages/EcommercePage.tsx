@@ -27,6 +27,7 @@ import ProductShowcase from '../components/ProductShowcase';
 import ContentEnhancer from '../components/ContentEnhancer';
 import { SmartAnimatedSection } from '../components/advanced/FluidScrollComponents';
 import ChatBot from '../components/ChatBot';
+import TestimonialCarousel from '../components/TestimonialCarousel';
 
 interface EcommercePageProps {
   onNavigateToGame?: () => void;
@@ -713,14 +714,54 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
       </section>
 
       {/* Game Stats - Inspired by 30seconds.ie */}
-      <section className="py-20 bg-gradient-to-r from-blue-800 via-blue-900 to-red-700 text-white">
-        <div className="container mx-auto px-6">          <motion.div
+      <section className="py-20 bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white relative overflow-hidden">
+        {/* Improved background contrast */}
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-900/95 via-slate-800/90 to-gray-900/95"></div>
+        
+        {/* Floating decorative patterns for better contrast */}
+        <div className="absolute inset-0 pointer-events-none">
+          <motion.div 
+            className="absolute top-20 left-20 w-32 h-32 border border-white/10 rounded-full"
+            animate={{
+              rotate: [0, 360],
+              scale: [1, 1.2, 1],
+              opacity: [0.1, 0.3, 0.1]
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          />
+          
+          <motion.div 
+            className="absolute bottom-20 right-20 w-24 h-24 bg-gradient-to-r from-white/5 to-gray-200/5 rounded-lg"
+            animate={{
+              y: [0, -20, 0],
+              rotate: [0, 45, 0]
+            }}
+            transition={{
+              duration: 15,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+        </div>
+        
+        <div className="container mx-auto px-6 relative z-10">          
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
             className="text-center mb-12 sm:mb-16"
           >
+            <h2 className="text-4xl md:text-5xl font-black mb-4 bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text text-transparent">
+              Por que escolher nosso jogo?
+            </h2>
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+              Números que falam por si
+            </p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 max-w-7xl mx-auto">            
@@ -729,18 +770,37 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.1, duration: 0.8 }}
               viewport={{ once: true }}
-              className="text-center"
+              className="text-center group"
             >
-              <div className="mobile-margin-sm">
+              <div className="mobile-margin-sm relative">
+                {/* Background com imagem */}
+                <div className="relative mb-6">
+                  <motion.img
+                    src={getDecorativePath.maisDe2500()}
+                    alt="Mais de 2500"
+                    className="w-20 h-20 mx-auto opacity-80 filter brightness-110"
+                    animate={{
+                      y: [0, -5, 0],
+                      scale: [1, 1.1, 1]
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-orange-400/20 rounded-full blur-xl"></div>
+                </div>
+                
                 <motion.div 
-                  className="text-4xl md:text-5xl font-black mobile-margin-xs bg-gradient-to-b from-yellow-300 to-orange-400 bg-clip-text text-transparent"
+                  className="text-4xl md:text-5xl font-black mobile-margin-xs bg-gradient-to-b from-yellow-400 to-orange-500 bg-clip-text text-transparent"
                   whileHover={{ scale: 1.1, rotate: [0, -5, 5, 0] }}
                   transition={{ duration: 0.5 }}
                 >
                   +2500
                 </motion.div>
-                <h3 className="text-lg md:text-xl font-bold mobile-margin-xs text-white">Palavras</h3>
-                <p className="text-sm text-orange-100 leading-relaxed px-2">
+                <h3 className="text-lg md:text-xl font-bold mobile-margin-xs text-white group-hover:text-yellow-400 transition-colors">Palavras</h3>
+                <p className="text-sm text-gray-300 leading-relaxed px-2">
                   para desafiar os seus conhecimentos
                 </p>
               </div>
@@ -751,18 +811,38 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.3, duration: 0.8 }}
               viewport={{ once: true }}
-              className="text-center"
+              className="text-center group"
             >
-              <div className="mobile-margin-sm">
+              <div className="mobile-margin-sm relative">
+                {/* Background com imagem */}
+                <div className="relative mb-6">
+                  <motion.img
+                    src={getDecorativePath.cartasEspeciais()}
+                    alt="Cartas especiais"
+                    className="w-20 h-20 mx-auto opacity-80 filter brightness-110"
+                    animate={{
+                      rotate: [0, 10, -10, 0],
+                      scale: [1, 1.05, 1]
+                    }}
+                    transition={{
+                      duration: 4,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: 0.5
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-purple-400/20 to-pink-400/20 rounded-full blur-xl"></div>
+                </div>
+                
                 <motion.div 
-                  className="text-4xl md:text-5xl font-black mobile-margin-xs bg-gradient-to-b from-yellow-300 to-orange-400 bg-clip-text text-transparent"
+                  className="text-4xl md:text-5xl font-black mobile-margin-xs bg-gradient-to-b from-purple-400 to-pink-500 bg-clip-text text-transparent"
                   whileHover={{ scale: 1.1, rotate: [0, 5, -5, 0] }}
                   transition={{ duration: 0.5 }}
                 >
                   MÍMICAS
                 </motion.div>
-                <h3 className="text-lg md:text-xl font-bold mobile-margin-xs text-white">Cartas Especiais</h3>
-                <p className="text-sm text-orange-100 leading-relaxed px-2">
+                <h3 className="text-lg md:text-xl font-bold mobile-margin-xs text-white group-hover:text-purple-400 transition-colors">Cartas Especiais</h3>
+                <p className="text-sm text-gray-300 leading-relaxed px-2">
                   para tornar o jogo ainda mais divertido
                 </p>
               </div>
@@ -773,18 +853,38 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.5, duration: 0.8 }}
               viewport={{ once: true }}
-              className="text-center"
+              className="text-center group"
             >
-              <div className="mobile-margin-sm">
+              <div className="mobile-margin-sm relative">
+                {/* Background com imagem */}
+                <div className="relative mb-6">
+                  <motion.img
+                    src={getDecorativePath.idealParaTi()}
+                    alt="Ideal para ti"
+                    className="w-20 h-20 mx-auto opacity-80 filter brightness-110"
+                    animate={{
+                      y: [0, -8, 0],
+                      rotate: [0, -5, 5, 0]
+                    }}
+                    transition={{
+                      duration: 5,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: 1
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-cyan-400/20 rounded-full blur-xl"></div>
+                </div>
+                
                 <motion.div 
-                  className="text-4xl md:text-5xl font-black mobile-margin-xs bg-gradient-to-b from-yellow-300 to-orange-400 bg-clip-text text-transparent"
+                  className="text-4xl md:text-5xl font-black mobile-margin-xs bg-gradient-to-b from-blue-400 to-cyan-500 bg-clip-text text-transparent"
                   whileHover={{ scale: 1.1, rotate: [0, -5, 5, 0] }}
                   transition={{ duration: 0.5 }}
                 >
                   IDEAL
                 </motion.div>
-                <h3 className="text-lg md:text-xl font-bold mobile-margin-xs text-white">Para Todas Ocasiões</h3>
-                <p className="text-sm text-orange-100 leading-relaxed px-2">
+                <h3 className="text-lg md:text-xl font-bold mobile-margin-xs text-white group-hover:text-blue-400 transition-colors">Para Todas Ocasiões</h3>
+                <p className="text-sm text-gray-300 leading-relaxed px-2">
                   festas, família e encontros com amigos
                 </p>
               </div>
@@ -795,18 +895,38 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.7, duration: 0.8 }}
               viewport={{ once: true }}
-              className="text-center"
+              className="text-center group"
             >
-              <div className="mobile-margin">
+              <div className="mobile-margin relative">
+                {/* Background com imagem */}
+                <div className="relative mb-6">
+                  <motion.img
+                    src={getDecorativePath.facilDeJogar()}
+                    alt="Fácil de jogar"
+                    className="w-20 h-20 mx-auto opacity-80 filter brightness-110"
+                    animate={{
+                      scale: [1, 1.2, 1],
+                      rotate: [0, 360, 0]
+                    }}
+                    transition={{
+                      duration: 6,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: 1.5
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-green-400/20 to-emerald-400/20 rounded-full blur-xl"></div>
+                </div>
+                
                 <motion.div 
-                  className="text-4xl md:text-5xl font-black mobile-margin-xs bg-gradient-to-b from-yellow-300 to-orange-400 bg-clip-text text-transparent"
+                  className="text-4xl md:text-5xl font-black mobile-margin-xs bg-gradient-to-b from-green-400 to-emerald-500 bg-clip-text text-transparent"
                   whileHover={{ scale: 1.1, rotate: [0, 5, -5, 0] }}
                   transition={{ duration: 0.5 }}
                 >
                   FÁCIL
                 </motion.div>
-                <h3 className="text-lg md:text-xl font-bold mobile-margin-xs text-white">De Jogar</h3>
-                <p className="text-sm text-orange-100 leading-relaxed">
+                <h3 className="text-lg md:text-xl font-bold mobile-margin-xs text-white group-hover:text-green-400 transition-colors">De Jogar</h3>
+                <p className="text-sm text-gray-300 leading-relaxed">
                   Impossível de parar!
                 </p>
               </div>
@@ -982,6 +1102,25 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
                           <Badge className="mobile-badge bg-red-500 text-white animate-pulse">
                             Promo
                           </Badge>
+                          {/* Stamp de desconto próximo ao preço */}
+                          <motion.div 
+                            className="bg-gradient-to-r from-red-500 to-red-600 text-white px-2 py-1 rounded-full text-xs font-bold shadow-lg ml-2"
+                            animate={{
+                              scale: [1, 1.1, 1],
+                              boxShadow: [
+                                "0 4px 6px rgba(0,0,0,0.1)",
+                                "0 8px 25px rgba(239, 68, 68, 0.4)",
+                                "0 4px 6px rgba(0,0,0,0.1)"
+                              ]
+                            }}
+                            transition={{
+                              duration: 2,
+                              repeat: Infinity,
+                              ease: "easeInOut"
+                            }}
+                          >
+                            -21%
+                          </motion.div>
                         </div>
                         <p className="text-mobile-body text-gray-600 dark:text-gray-300 text-center mobile-margin-sm">
                           Versão com palavras mais desafiadoras
@@ -1065,6 +1204,26 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
                           <Badge className="mobile-badge bg-red-500 text-white animate-pulse">
                             Promo
                           </Badge>
+                          {/* Stamp de desconto próximo ao preço */}
+                          <motion.div 
+                            className="bg-gradient-to-r from-green-500 to-green-600 text-white px-2 py-1 rounded-full text-xs font-bold shadow-lg ml-2"
+                            animate={{
+                              scale: [1, 1.1, 1],
+                              boxShadow: [
+                                "0 4px 6px rgba(0,0,0,0.1)",
+                                "0 8px 25px rgba(34, 197, 94, 0.4)",
+                                "0 4px 6px rgba(0,0,0,0.1)"
+                              ]
+                            }}
+                            transition={{
+                              duration: 2,
+                              repeat: Infinity,
+                              ease: "easeInOut",
+                              delay: 0.5
+                            }}
+                          >
+                            -17%
+                          </motion.div>
                         </div>                        <p className="text-mobile-body text-gray-600 dark:text-gray-300 text-center mobile-margin-sm">
                           Versão com palavras mais simples
                         </p>
@@ -1553,63 +1712,7 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {[
-              {
-                name: "Maria Santos",
-                location: "Maputo",
-                text: "Meus filhos adoram! É o jogo perfeito para reunir a família nos fins de semana. Muito divertido!",
-                rating: 5,
-                delay: 0.1
-              },
-              {
-                name: "João Macamo",
-                location: "Beira",
-                text: "Qualidade excelente e muito bem pensado. As palavras são desafiadoras.",
-                rating: 4,
-                delay: 0.3
-              },
-              {
-                name: "Ana Muchanga",
-                location: "Nampula",
-                text: "Compramos para presentear e foi um sucesso! Agora toda a família quer jogar.",
-                rating: 5,
-                delay: 0.5
-              }
-            ].map((testimonial, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: testimonial.delay, duration: 0.8 }}
-                viewport={{ once: true }}
-                className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20 hover:bg-white/15 transition-all duration-300"
-                whileHover={{ scale: 1.05, y: -10 }}
-              >
-                <div className="flex mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <motion.span
-                      key={i}
-                      className="text-yellow-400 text-xl"
-                      animate={{ scale: [1, 1.2, 1] }}
-                      transition={{ delay: i * 0.1, duration: 0.5 }}
-                    >
-                      ⭐
-                    </motion.span>
-                  ))}
-                </div>
-                
-                <p className="text-lg text-blue-100 mb-6 italic">
-                  "{testimonial.text}"
-                </p>
-                
-                <div className="border-t border-white/20 pt-4">
-                  <h4 className="font-bold text-white">{testimonial.name}</h4>
-                  <p className="text-blue-200 text-sm">{testimonial.location}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          <TestimonialCarousel />
         </div>
       </section>
 

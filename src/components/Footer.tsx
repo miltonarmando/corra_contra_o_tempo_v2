@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { 
   InstagramLogo, 
   FacebookLogo, 
-  TwitterLogo,
+  WhatsappLogo,
   MapPin,
   Copyright
 } from '@phosphor-icons/react';
@@ -45,7 +45,7 @@ const Footer: React.FC = () => {
   const socialLinks = [
     { icon: <InstagramLogo size={24} />, href: 'https://instagram.com/corracontraotempo', label: 'Instagram', color: 'bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600' },
     { icon: <FacebookLogo size={24} />, href: 'https://facebook.com/corracontraotempo', label: 'Facebook', color: 'bg-blue-600 hover:bg-blue-700' },
-    { icon: <TwitterLogo size={24} />, href: 'https://twitter.com/corracontraotempo', label: 'Twitter', color: 'bg-sky-500 hover:bg-sky-600' },
+    { icon: <WhatsappLogo size={24} />, href: 'https://wa.me/258845678901', label: 'WhatsApp', color: 'bg-green-500 hover:bg-green-600' },
   ];
   const quickLinks = [
     { label: 'Início', href: '#hero' },
