@@ -56,7 +56,6 @@ const ChatBot: React.FC<ChatBotProps> = ({ className = '' }) => {
     setMessages(prev => [...prev, userMessage]);
     setInputValue('');
     setIsLoading(true);
-
     try {
       const botResponse = await callOpenRouterAPI(userMessage.text);
 
@@ -83,24 +82,29 @@ const ChatBot: React.FC<ChatBotProps> = ({ className = '' }) => {
         isBot: true,
         timestamp: new Date()
       };
-
       setMessages(prev => [...prev, errorMsg]);
     } finally {
       setIsLoading(false);
     }
   };
 
-  const callOpenRouterAPI = async (userMessage: string): Promise<string> => {
-    // Criar histórico das últimas 2 mensagens (1 par pergunta-resposta) para contexto
+  const callOpenRouterAPI = async (userMessage: string, retryCount = 0): Promise<string> => {
+    // Retry automático com backoff exponencial para resolver 429
+    if (retryCount > 0) {
+      const delay = Math.min(1000 * Math.pow(2, retryCount), 8000); // Max 8s
+      await new Promise(resolve => setTimeout(resolve, delay));
+    }
+
+    // Criar histórico completo da sessão (não apenas 2 mensagens)
     const conversationHistory = messages
-      .slice(-2) // Últimas 2 mensagens apenas
+      .filter(msg => msg.id !== 'welcome') // Remove apenas a mensagem de boas-vindas
       .map(msg => ({
         role: msg.isBot ? 'assistant' : 'user',
         content: msg.text
       }));
 
     const requestBody = {
-      model: 'meta-llama/llama-3.2-3b-instruct',
+      model: 'anthropic/claude-3.5-haiku', // Modelo pago - mais estável, menos rate limits
       messages: [
         {
           role: 'system',
@@ -108,7 +112,7 @@ const ChatBot: React.FC<ChatBotProps> = ({ className = '' }) => {
 
 PERSONALIDADE: Seja natural, conversacional e entusiasmado sobre o jogo! Evite respostas robotizadas e seja genuinamente útil.
 
-REGRA PRINCIPAL: Responda sobre o jogo de forma amigável. Para perguntas fora do tópico, redirecione educadamente mas sem soar robótico.
+REGRA PRINCIPAL: Responda sobre o jogo de forma amigável. Para perguntas fora do tópico, redirecione educadamente mas sem soar robótico. Não converse assuntos fora do contexto do jogo e dados fornecidos.
 
 INFORMAÇÕES OFICIAIS DO JOGO (baseadas no manual oficial):
 
@@ -180,7 +184,6 @@ COMO SER NATURAL NAS RESPOSTAS:
 
 EXEMPLOS DE RESPOSTAS NATURAIS:
 - "Oi" → "Olá! Tudo bem? Como posso ajudar com o jogo?"
-- "Loja física?" → "Não tenho info sobre loja física, mas pode ligar para +258 84 312 4567 para saber onde encontrar!"
 - "Como jogar?" → Explique as regras de forma amigável e clara
 - "Preço?" → "Temos promoção! KIDS e ADULTO por 1.500 MT cada. Quer saber mais detalhes?"
 
@@ -201,8 +204,8 @@ Mantenha máximo 200 palavras por resposta e seja genuinamente útil!`
       headers: {
         'Authorization': `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
-        'HTTP-Referer': window.location.origin,
-        'X-Title': 'Corra Contra o Tempo - ChatBot'
+        'HTTP-Referer': window.location.origin || 'http://localhost:5173',
+        'X-Title': 'Corra Contra o Tempo ChatBot'
       },
       body: JSON.stringify(requestBody)
     });
@@ -210,8 +213,13 @@ Mantenha máximo 200 palavras por resposta e seja genuinamente útil!`
     if (!response.ok) {
       console.error('ChatBot API Error:', response.status);
       
-      if (response.status === 401) {
+      if (response.status === 429 && retryCount < 3) {
+        // Retry automático para 429 (até 3 tentativas)
+        return callOpenRouterAPI(userMessage, retryCount + 1);
+      } else if (response.status === 401) {
         throw new Error('🔑 Problema temporário de autenticação. Tente novamente.');
+      } else if (response.status === 429) {
+        throw new Error('⚡ Aguarde um momento e tente novamente...');
       } else if (response.status >= 500) {
         throw new Error('🔧 Serviço temporariamente indisponível. Tente novamente em alguns minutos.');
       } else {
