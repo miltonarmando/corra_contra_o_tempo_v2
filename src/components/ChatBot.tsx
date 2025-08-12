@@ -123,7 +123,7 @@ const ChatBot: React.FC<ChatBotProps> = ({ className = '' }) => {
       }));
 
     const requestBody = {
-      model: 'openai/gpt-3.5-turbo', // Modelo gratuito
+      model: 'meta-llama/llama-3.1-70b-instruct', // Modelo gratuito meta-llama/llama-3.1-70b-instruct openai/gpt-3.5-turbo
       messages: [
         {
           role: 'system',
