@@ -27,6 +27,14 @@ jobs:
       run: npm run build
       env:
         VITE_OPENROUTER_API_KEY: ${{ secrets.VITE_OPENROUTER_API_KEY }}
+        CI: false
+
+    - name: Debug Build
+      run: |
+        echo "Build completed"
+        ls -la dist/
+        echo "Checking if API key is in build..."
+        grep -q "sk-or-v1" dist/assets/*.js && echo "✅ API key found in build" || echo "❌ API key NOT found in build"
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3

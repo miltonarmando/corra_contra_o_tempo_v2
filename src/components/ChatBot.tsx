@@ -21,8 +21,20 @@ const ChatBot: React.FC<ChatBotProps> = ({ className = '' }) => {
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // API Key OpenRouter - via variável de ambiente
+  // API Key OpenRouter - SOMENTE via variável de ambiente (SEGURANÇA)
   const apiKey = import.meta.env.VITE_OPENROUTER_API_KEY;
+
+  // Debug para verificar se a API key está sendo carregada em produção
+  useEffect(() => {
+    if (!apiKey) {
+      console.error('❌ API Key não encontrada!');
+      console.log('Variáveis disponíveis:', Object.keys(import.meta.env));
+      console.log('Mode:', import.meta.env.MODE);
+      console.log('Env completo:', import.meta.env);
+    } else {
+      console.log('✅ API Key carregada:', apiKey.substring(0, 20) + '...');
+    }
+  }, [apiKey]);
 
   // Auto-scroll para a última mensagem
   useEffect(() => {
@@ -89,6 +101,12 @@ const ChatBot: React.FC<ChatBotProps> = ({ className = '' }) => {
   };
 
   const callOpenRouterAPI = async (userMessage: string, retryCount = 0): Promise<string> => {
+    // Verificação crítica da API key
+    if (!apiKey || apiKey === 'undefined' || apiKey === '') {
+      console.error('❌ API Key inválida:', { apiKey, env: import.meta.env.MODE });
+      throw new Error('🔑 Configuração da API pendente. Entre em contato conosco.');
+    }
+
     // Retry automático com backoff exponencial para resolver 429
     if (retryCount > 0) {
       const delay = Math.min(1000 * Math.pow(2, retryCount), 8000); // Max 8s
