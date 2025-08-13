@@ -28,6 +28,7 @@ import ContentEnhancer from '../components/ContentEnhancer';
 import { SmartAnimatedSection } from '../components/advanced/FluidScrollComponents';
 import ChatBot from '../components/ChatBot';
 import TestimonialCarousel from '../components/TestimonialCarousel';
+import ResellerRegistrationModal from '../components/ResellerRegistrationModal';
 
 interface EcommercePageProps {
   onNavigateToGame?: () => void;
@@ -38,6 +39,7 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
   const [selectedVersion, setSelectedVersion] = useState<'kids' | 'adult'>('adult');
   const [isCard1Flipped, setIsCard1Flipped] = useState(false);
   const [isCard2Flipped, setIsCard2Flipped] = useState(false);
+  const [isResellerModalOpen, setIsResellerModalOpen] = useState(false);
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 300], [0, -50]);  return (
     <div className="min-h-screen bg-gradient-to-br from-blue-800 via-blue-900 to-red-600">
@@ -933,7 +935,8 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
             </motion.div>
           </div>
         </div>
-      </section>      {/* Products Section - Enhanced with sophisticated floating elements */}
+      </section>      
+      {/* Products Section - Enhanced with sophisticated floating elements */}
       <section id="produtos" className="mobile-section bg-gradient-to-br from-blue-800 via-blue-900 to-red-600 text-white relative overflow-hidden">
         
         {/* Floating decorative images for Products section */}
@@ -1052,7 +1055,8 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
             }}
           />
         </div>
-          <div className="container mx-auto mobile-container">          <SmartAnimatedSection direction="up" className="text-center mobile-margin" once={false}>
+          <div className="container mx-auto mobile-container">          
+            <SmartAnimatedSection direction="up" className="text-center mobile-margin" once={false}>
             <h2 className="text-mobile-title font-black text-white dark:text-white mobile-margin-sm">
               Parabéns! Você está prestes a
             </h2>            
@@ -1073,7 +1077,8 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
                         ADULTO
                     </div>
                     
-                    {/* Imagem padronizada */}                    <div className="flex justify-center items-center h-64 sm:h-72 lg:h-80 mobile-margin-sm">
+                    {/* Imagem padronizada */}                    
+                    <div className="flex justify-center items-center h-64 sm:h-72 lg:h-80 mobile-margin-sm">
                       <motion.img 
                         src={getBoardPath.adult()} 
                         alt="Corra Contra o Tempo - Adulto"
@@ -1088,7 +1093,8 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
                     </div>
                     
                     {/* Conteúdo do card */}
-                    <div className="flex-1 flex flex-col justify-between">                    <div className="mobile-margin-sm">
+                    <div className="flex-1 flex flex-col justify-between">                    
+                      <div className="mobile-margin-sm">
                         <div className="flex items-center justify-center mobile-gap-sm mobile-margin-sm">
                           <motion.span 
                             className="text-mobile-price text-blue-800"
@@ -1139,7 +1145,8 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
                             whileInView={{ opacity: 1, scale: 1 }}
                             transition={{ delay: index * 0.05, duration: 0.3 }}
                             viewport={{ once: true }}
-                          >                            <Badge className="mobile-badge inline-flex justify-center py-2 px-3 text-mobile-caption text-black hover:bg-blue-50 transition-colors duration-200">
+                          >                            
+                          <Badge className="mobile-badge inline-flex justify-center py-2 px-3 text-mobile-caption text-black hover:bg-blue-50 transition-colors duration-200">
                               <item.icon className="icon-responsive-sm mr-1 text-black" />
                               {item.text}
                             </Badge>
@@ -1147,7 +1154,8 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
                         ))}
                       </div>
 
-                      <div className="mt-auto">                        <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                      <div className="mt-auto">                        
+                        <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                           <Button 
                             className="w-full px-8 py-4 text-lg bg-gradient-to-r from-blue-700 to-red-500 hover:from-blue-800 hover:to-red-600 text-white font-bold shadow-lg hover:shadow-xl transition-all duration-300 min-h-[56px]"
                             onClick={() => setSelectedVersion('adult')}
@@ -1165,7 +1173,8 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
                     </div>
                   </Card>
 
-              </SmartAnimatedSection>              {/* Kids Version - Enhanced */}
+              </SmartAnimatedSection>              
+              {/* Kids Version - Enhanced */}
               <SmartAnimatedSection direction="right" delay={0.2} className="text-center h-full" once={false}>
                   <ProductShowcase version="kids" className="absolute inset-0" />
                   
@@ -1175,7 +1184,8 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
                     </div>
                     
                     {/* Imagem padronizada */}
-                    <div className="flex justify-center items-center h-64 sm:h-72 lg:h-80 mobile-margin-sm">                      <motion.img 
+                    <div className="flex justify-center items-center h-64 sm:h-72 lg:h-80 mobile-margin-sm">                      
+                      <motion.img 
                         src={getBoardPath.kids()} 
                         alt="Corra Contra o Tempo - Kids"
                         className="w-auto h-full max-w-full object-contain"
@@ -1187,7 +1197,6 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
                         transition={{ duration: 0.3 }}
                       />
                     </div>
-                    
                     {/* Conteúdo do card */}
                     <div className="flex-1 flex flex-col justify-between">
                       <div className="mobile-margin-sm">
@@ -1224,10 +1233,12 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
                           >
                             -17%
                           </motion.div>
-                        </div>                        <p className="text-mobile-body text-gray-600 dark:text-gray-300 text-center mobile-margin-sm">
+                        </div>                        
+                        <p className="text-mobile-body text-gray-600 dark:text-gray-300 text-center mobile-margin-sm">
                           Versão com palavras mais simples
                         </p>
-                      </div>                      <div className="mobile-grid-2 mobile-margin-sm">
+                      </div>                      
+                      <div className="mobile-grid-2 mobile-margin-sm">
                         {[
                           { icon: Users, text: "2-6 Jogadores" },
                           { icon: Clock, text: "30-45 min" },
@@ -1274,12 +1285,14 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
               <ContentEnhancer variant="highlight">
                 <p className="text-mobile-body text-white max-w-3xl mx-auto leading-relaxed">
                   🎯 Ambas as versões têm o mesmo conteúdo e regras, diferindo apenas na dificuldade das palavras.
-                  A versão "Kids" tem palavras mais simples, enquanto a "Adulto" tem palavras mais desafiadoras! ✨                </p>
+                  A versão "Kids" tem palavras mais simples, enquanto a "Adulto" tem palavras mais desafiadoras! ✨    
+                </p>
               </ContentEnhancer>
             </SmartAnimatedSection>
           </div>
         </div>
-      </section>      {/* Game Details Section - Ultra-Modern with Advanced UIX */}
+      </section>      
+      {/* Game Details Section - Ultra-Modern with Advanced UIX */}
       <section id="detalhes" className="mobile-section bg-gradient-to-br from-blue-800 via-blue-900 to-red-600 text-white relative overflow-hidden">
         
         {/* Floating decorative images for Detalhes section */}
@@ -1718,7 +1731,41 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
 
       {/* Become a Reseller Section */}
       <section id="revendedor" className="py-20 bg-gradient-to-br from-green-800 via-blue-800 to-purple-800 text-white relative overflow-hidden">
-        <div className="container mx-auto px-6">
+        {/* Advanced background effects */}
+        <div className="absolute inset-0 bg-gradient-to-br from-green-600/20 via-blue-600/15 to-purple-600/20"></div>
+        
+        {/* Floating decorative elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <motion.div 
+            className="absolute top-20 left-20 w-32 h-32 bg-gradient-to-r from-green-400/20 to-blue-400/20 rounded-full blur-2xl"
+            animate={{
+              scale: [1, 1.5, 1],
+              opacity: [0.3, 0.6, 0.3],
+              x: [0, 50, 0]
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          
+          <motion.div 
+            className="absolute bottom-20 right-20 w-40 h-40 bg-gradient-to-r from-purple-400/20 to-pink-400/20 rounded-full blur-2xl"
+            animate={{
+              scale: [1.2, 1, 1.2],
+              opacity: [0.4, 0.7, 0.4],
+              y: [0, -30, 0]
+            }}
+            transition={{
+              duration: 6,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+        </div>
+        
+        <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
@@ -1726,89 +1773,122 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-4xl md:text-5xl font-black mb-6 bg-gradient-to-r from-green-300 via-blue-300 to-purple-300 bg-clip-text text-transparent">
+              <motion.div 
+                className="inline-flex items-center gap-3 bg-gradient-to-r from-green-500/20 to-purple-500/20 backdrop-blur-xl rounded-full px-6 py-3 mb-8 border border-white/10"
+                whileHover={{ scale: 1.05 }}
+              >
+                <span className="text-green-400 text-2xl">💼</span>
+                <span className="text-green-300 font-semibold">Oportunidade de Negócio</span>
+              </motion.div>
+              
+              <h2 className="text-5xl md:text-6xl font-black mb-6 bg-gradient-to-r from-green-300 via-blue-300 to-purple-300 bg-clip-text text-transparent">
                 Torne-se um Revendedor
               </h2>
               
-              <p className="text-xl text-green-100 mb-8 max-w-2xl mx-auto">
-                Junte-se à nossa rede de revendedores e ganhe dinheiro vendendo o jogo mais divertido de Moçambique!
+              <p className="text-xl text-green-100 mb-12 max-w-3xl mx-auto leading-relaxed">
+                Junte-se à nossa rede de revendedores e ganhe dinheiro vendendo o jogo mais divertido de Moçambique! 
+                <span className="block mt-2 text-lg text-blue-200">
+                  Margens atrativas • Suporte completo • Estoque garantido
+                </span>
               </p>
             </motion.div>
 
-            <div className="grid md:grid-cols-3 gap-8 mb-12">
-              {[
-                {
-                  icon: "💰",
-                                   title: "Margens Atrativas",
-                  desc: "Faça seu lucro em cada venda",
-                  color: "from-green-500 to-emerald-500"
-                },
-                {
-                  icon: "📦",
-                  title: "Estoque Garantido",
-                  desc: "Reposição rápida e confiável",
-                  color: "from-blue-500 to-cyan-500"
-                },
-                {
-                  icon: "🎯",
-                  title: "Suporte Completo",
-                  desc: "Material de marketing e treinamento",
-                  color: "from-purple-500 to-pink-500"
-                }
-              ].map((benefit, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.2, duration: 0.6 }}
-                  viewport={{ once: true }}
-                  className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20"
-                  whileHover={{ scale: 1.05, y: -5 }}
-                >
-                  <motion.div 
-                    className={`w-16 h-16 bg-gradient-to-r ${benefit.color} rounded-full flex items-center justify-center text-3xl mb-4 mx-auto`}
-                    whileHover={{ rotate: 360 }}
-                    transition={{ duration: 0.6 }}
-                  >
-                    {benefit.icon}
-                  </motion.div>
-                  
-                  <h3 className="text-xl font-bold mb-2">{benefit.title}</h3>
-                  <p className="text-green-100">{benefit.desc}</p>
-                </motion.div>
-              ))}
-            </div>
-
+            {/* Main CTA Button */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+              viewport={{ once: true }}
+              className="relative"
+            >
+              {/* Glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-green-500 to-purple-500 rounded-2xl blur-xl opacity-30 animate-pulse"></div>
+              
+              <motion.button
+                onClick={() => setIsResellerModalOpen(true)}
+                className="relative bg-gradient-to-r from-green-500 via-blue-500 to-purple-500 hover:from-green-600 hover:via-blue-600 hover:to-purple-600 text-white font-black text-2xl px-12 py-6 rounded-2xl shadow-2xl transition-all duration-300 border-2 border-white/20"
+                whileHover={{ 
+                  scale: 1.05,
+                  boxShadow: "0 25px 50px rgba(0,0,0,0.3)"
+                }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <motion.div
+                  className="flex items-center justify-center gap-4"
+                  animate={{
+                    y: [0, -2, 0]
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
+                  <span className="text-3xl">🚀</span>
+                  <span>QUERO SER REVENDEDOR</span>
+                  <span className="text-3xl">💰</span>
+                </motion.div>
+                
+                {/* Sparkle effects */}
+                <div className="absolute inset-0 pointer-events-none">
+                  {[...Array(6)].map((_, i) => (
+                    <motion.div
+                      key={i}
+                      className="absolute w-2 h-2 bg-white rounded-full"
+                      style={{
+                        left: `${20 + (i * 12)}%`,
+                        top: `${30 + (i % 2) * 40}%`,
+                      }}
+                      animate={{
+                        scale: [0, 1, 0],
+                        opacity: [0, 1, 0],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        delay: i * 0.3,
+                        ease: "easeInOut"
+                      }}
+                    />
+                  ))}
+                </div>
+              </motion.button>
+            </motion.div>
+
+            {/* Trust indicators */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.8 }}
               viewport={{ once: true }}
-              className="bg-gradient-to-r from-green-600 to-blue-600 rounded-3xl p-8"
+              className="mt-12 flex flex-wrap justify-center items-center gap-8 text-green-200"
             >
-              <h3 className="text-2xl font-bold mb-4">Pronto para começar?</h3>
-              <p className="text-lg mb-6 text-green-100">
-                Entre em contato conosco e descubra como se tornar um revendedor oficial
-              </p>
+              <div className="flex items-center gap-2">
+                <span className="text-green-400 text-xl">✅</span>
+                <span className="font-semibold">Produto 100% Moçambicano</span>
+              </div>
               
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button 
-                  size="lg" 
-                  className="bg-white text-green-700 hover:bg-green-50 font-bold"
-                  onClick={() => window.open('https://wa.me/258123456789?text=Olá! Tenho interesse em me tornar revendedor do jogo Corra Contra o Tempo.', '_blank')}
-                >
-                  📱 WhatsApp
-                </Button>
-                <Button 
-                  size="lg" 
-                  variant="outline"
-                  className="border-white text-white hover:bg-white hover:text-green-700 font-bold"
-                  onClick={() => window.location.href = 'mailto:revendedores@corracontraotempo.co.mz'}
-                >
-                  ✉️ Email
-                </Button>
+              <div className="flex items-center gap-2">
+                <span className="text-blue-400 text-xl">🎯</span>
+                <span className="font-semibold">Alta Demanda</span>
+              </div>
+              
+              <div className="flex items-center gap-2">
+                <span className="text-purple-400 text-xl">💎</span>
+                <span className="font-semibold">Qualidade Premium</span>
               </div>
             </motion.div>
+
+            {/* Additional info */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ delay: 0.8, duration: 0.8 }}
+              viewport={{ once: true }}
+              className="mt-8 text-gray-300 text-lg"
+            >
+              Cadastro rápido e simples
+            </motion.p>
           </div>
         </div>
       </section>
@@ -1905,6 +1985,12 @@ const EcommercePage: React.FC<EcommercePageProps> = ({ }) => {
       <BackToTop />
       <ChatBot />
       <Footer />
+      
+      {/* Reseller Registration Modal */}
+      <ResellerRegistrationModal 
+        isOpen={isResellerModalOpen}
+        onClose={() => setIsResellerModalOpen(false)}
+      />
     </div>
   );
 };
